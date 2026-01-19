@@ -12,14 +12,14 @@ return new class extends Migration {
     {
         Schema::create('audit_exports', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->foreignUlid('mandante_id')->constrained();
-            $table->foreignUlid('user_id')->constrained()->comment('Chi ha generato il dossier');
-            $table->foreignUlid('mandataria_id')->constrained();
 
             $table->string('tipo_report')->comment('Es: Dossier Completo, Registro Formazione');
             $table->timestamp('generato_il');
             $table->timestamps();
             $table->comment('Log delle esportazioni di dati effettuate per finalità di audit');
+            $table->foreignUlid('mandante_id')->constrained('mandanti')->cascadeOnDelete();
+            $table->foreignUlid('user_id')->constrained()->comment('Chi ha generato il dossier');
+            $table->foreignUlid('mandataria_id')->constrained('mandatarie')->comment("Il Titolare che sta eseguendo l'audit");
         });
     }
 

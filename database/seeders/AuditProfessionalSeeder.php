@@ -58,12 +58,21 @@ class AuditProfessionalSeeder extends Seeder
         ];
 
         foreach ($data as $sezioneNome => $domande) {
-            $sezioneId = Str::ulid();
-            DB::table('audit_sezioni')->insert([
-                'id' => $sezioneId,
-                'nome' => $sezioneNome,
-                'created_at' => now()
-            ]);
+            // 1. Usa updateOrInsert per la sezione
+            // Se il nome esiste, recupera l'ID esistente, altrimenti ne crea uno nuovo.
+            $sezione = DB::table('audit_sezioni')->where('nome', $sezioneNome)->first();
+
+            if ($sezione) {
+                $sezioneId = $sezione->id;
+            } else {
+                $sezioneId = (string) Str::ulid();
+                DB::table('audit_sezioni')->insert([
+                    'id' => $sezioneId,
+                    'nome' => $sezioneNome,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
 
             foreach ($domande as $d) {
                 DB::table('audit_software_domande')->insert([

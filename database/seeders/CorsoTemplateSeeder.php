@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\CorsoTemplate;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class CorsoTemplateSeeder extends Seeder
 {
@@ -46,10 +48,15 @@ class CorsoTemplateSeeder extends Seeder
         ];
 
         foreach ($corsi as $corso) {
-            CorsoTemplate::updateOrCreate(
-                ['titolo' => $corso['titolo']],
-                $corso
-            );
+            DB::table('corso_templates')->insert([
+                'id' => (string) Str::ulid(),  // Genera l'ID qui
+                'titolo' => 'GDPR Base - Introduzione alla Protezione Dati',
+                'descrizione' => 'Concetti fondamentali...',
+                'validita_mesi' => 12,
+                'is_obbligatorio' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
         }
     }
 }

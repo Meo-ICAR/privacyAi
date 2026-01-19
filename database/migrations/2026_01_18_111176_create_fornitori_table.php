@@ -16,7 +16,6 @@ return new class extends Migration {
             $table->string('ragione_sociale')->comment('Denominazione fornitore');
             $table->string('p_iva', 11);
             $table->string('website')->nullable()->comment('Sito web aziendale');
-            $table->foreignUlid('mansione_id')->nullable()->constrained('mansioni')->nullOnDelete();
             $table->string('responsabile_trattamento')->comment('Responsabile del Trattamento ( amministratore azienda)');
             // Privacy Logic: La Mandataria nomina TE (Mandante)
             $table->date('data_nomina')->comment('Data in cui abbiamo nominato il fornitore come Responsabile');

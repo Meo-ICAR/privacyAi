@@ -12,12 +12,11 @@ return new class extends Migration {
     {
         Schema::create('misura_sicurezza', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->foreignUlid('mandante_id')->constrained()->cascadeOnDelete();
-            $table->foreignUlid('misura_id')->constrained('misure_sicurezza')->cascadeOnDelete();
-
-            $table->boolean('is_attiva')->default(false);
-            $table->text('note_implementazione')->nullable()->comment('Dettagli su come la misura è applicata');
-            $table->date('ultima_verifica_at')->nullable()->comment('Data ultimo test della misura');
+            $table->string('codice')->nullable();
+            $table->string('nome')->nullable();
+            $table->string('tipo')->nullable();
+            $table->string('area')->nullable();
+            $table->text('descrizione')->nullable()->comment('Dettagli su come la misura è applicata');
 
             $table->timestamps();
         });

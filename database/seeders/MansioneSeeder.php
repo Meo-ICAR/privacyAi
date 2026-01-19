@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Mansione;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class MansioneSeeder extends Seeder
 {
@@ -52,10 +53,16 @@ class MansioneSeeder extends Seeder
         ];
 
         foreach ($mansioni as $mansione) {
-            // Utilizziamo updateOrCreate per evitare duplicati in caso di esecuzioni multiple
-            Mansione::updateOrCreate(
-                ['nome' => $mansione['nome']],
-                $mansione
+            DB::table('mansioni')->updateOrInsert(
+                ['nome' => $mansione['nome']],  // Criterio di ricerca per evitare duplicati
+                array_merge(
+                    [
+                        'id' => (string) \Illuminate\Support\Str::ulid(),  // Genera l'ULID manualmente
+                        'created_at' => now(),
+                        'updated_at' => now()
+                    ],
+                    $mansione
+                )
             );
         }
     }

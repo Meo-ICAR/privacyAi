@@ -49,9 +49,16 @@ class MisuraSicurezzaSeeder extends Seeder
         ];
 
         foreach ($misure as $m) {
-            DB::table('misure_sicurezza')->updateOrInsert(
-                ['codice' => $m['codice']],
-                array_merge($m, ['id' => (string) Str::ulid(), 'created_at' => now()])
+            DB::table('misura_sicurezza')->updateOrInsert(
+                ['codice' => $m['codice']],  // 1. Condizione di ricerca (Trovalo tramite codice)
+                array_merge(
+                    [
+                        'id' => (string) Str::ulid(),
+                        'created_at' => now(),
+                        'updated_at' => now()
+                    ],
+                    $m
+                )  // 2. Dati da inserire o aggiornare
             );
         }
     }

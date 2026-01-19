@@ -13,10 +13,6 @@ return new class extends Migration {
         Schema::create('audit_fornitori', function (Blueprint $table) {
             $table->ulid('id')->primary();
 
-            $table->foreignUlid('mandante_id')->constrained()->cascadeOnDelete();
-
-            $table->foreignUlid('fornitore_id')->constrained()->cascadeOnDelete();
-
             $table->year('anno_riferimento');
 
             $table->date('data_esecuzione')->nullable();
@@ -26,6 +22,9 @@ return new class extends Migration {
             $table->integer('punteggio_compliance')->nullable()->comment('Punteggio da 0 a 100');
 
             $table->text('note_generali')->nullable();
+            $table->foreignUlid('mandante_id')->constrained('mandanti')->cascadeOnDelete();
+
+            $table->foreignUlid('fornitore_id')->constrained('fornitori')->cascadeOnDelete();
 
             $table->foreignUlid('eseguito_da')->nullable()->constrained('users');
 

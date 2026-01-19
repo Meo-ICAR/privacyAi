@@ -12,8 +12,8 @@ return new class extends Migration {
     {
         Schema::create('audit_requests', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->foreignUlid('mandante_id')->constrained()->cascadeOnDelete();
-            $table->foreignUlid('mandataria_id')->constrained()->comment("Il Titolare che sta eseguendo l'audit");
+            $table->foreignUlid('mandante_id')->constrained('mandanti')->cascadeOnDelete();
+            $table->foreignUlid('mandataria_id')->constrained('mandatarie')->comment("Il Titolare che sta eseguendo l'audit");
 
             $table->string('titolo')->comment('Es: Audit Annuale Privacy 2026');
             $table->date('data_inizio');

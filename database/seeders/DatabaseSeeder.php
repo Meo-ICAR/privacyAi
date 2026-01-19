@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,8 +20,12 @@ class DatabaseSeeder extends Seeder
         // Queste tabelle non dipendono da nessuno e sono condivise tra tutti i tenant.
         $this->call([
             EmailProviderSeeder::class,  // Configurazione IMAP/OAuth2
-            MansioneSeeder::class,  // Catalogo ruoli e rischi privacy
             CorsoTemplateSeeder::class,  // Catalogo corsi di formazione standard
+            AuditProfessionalSeeder::class,  // La checklist con 60+ controlli
+            EmailTemplateSeeder::class,  // I template per le notifiche
+            DocumentoTipoSeeder::class,
+            MisuraSicurezzaSeeder::class,
+            MansioneSeeder::class,  // Catalogo ruoli e rischi privacy
         ]);
 
         // 2. Creazione del Super-Admin (DPO Globale)
