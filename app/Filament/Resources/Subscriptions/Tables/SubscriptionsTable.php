@@ -21,17 +21,27 @@ class SubscriptionsTable
                 TextColumn::make('type')
                     ->searchable(),
                 TextColumn::make('stripe_id')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('stripe_status')
-                    ->searchable(),
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'active' => 'success',
+                        'past_due' => 'warning',
+                        'canceled' => 'danger',
+                        'incomplete' => 'warning',
+                        default => 'gray',
+                    }),
                 TextColumn::make('stripe_price')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('quantity')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('trial_ends_at')
                     ->dateTime()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('ends_at')
                     ->dateTime()
                     ->sortable(),

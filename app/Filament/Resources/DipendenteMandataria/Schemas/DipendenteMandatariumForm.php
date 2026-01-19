@@ -13,14 +13,21 @@ class DipendenteMandatariumForm
     {
         return $schema
             ->components([
-                TextInput::make('dipendente_id')
-                    ->required(),
-                TextInput::make('mandataria_id')
-                    ->required(),
+                Select::make('dipendente_id')
+                    ->relationship('dipendente', 'cognome')
+                    ->required()
+                    ->searchable(),
+                Select::make('mandataria_id')
+                    ->relationship('mandataria', 'ragione_sociale')
+                    ->required()
+                    ->searchable(),
                 DatePicker::make('data_autorizzazione')
-                    ->required(),
+                    ->required()
+                    ->helperText('Data in cui il dipendente è stato autorizzato a operare su questa specifica Mandataria'),
                 Toggle::make('is_active')
-                    ->required(),
+                    ->default(true)
+                    ->required()
+                    ->helperText('Indica se il dipendente opera ancora con questa Mandataria'),
             ]);
     }
 }

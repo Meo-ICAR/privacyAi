@@ -13,14 +13,19 @@ class EmailTemplateForm
         return $schema
             ->components([
                 TextInput::make('slug')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255)
+                    ->unique(ignoreRecord: true)
+                    ->helperText("Es: 'scadenza-corso', 'nuova-fattura'"),
                 TextInput::make('oggetto')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255),
                 Textarea::make('corpo_markdown')
+                    ->rows(10)
                     ->required()
                     ->columnSpanFull(),
-                TextInput::make('placeholders')
-                    ->required(),
+                KeyValue::make('placeholders')
+                    ->helperText('Lista dei tag disponibili'),
             ]);
     }
 }

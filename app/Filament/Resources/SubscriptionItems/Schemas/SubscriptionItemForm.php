@@ -15,14 +15,19 @@ class SubscriptionItemForm
                     ->required()
                     ->numeric(),
                 TextInput::make('stripe_id')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255)
+                    ->unique(ignoreRecord: true),
                 TextInput::make('stripe_product')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255),
                 TextInput::make('stripe_price')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255),
                 TextInput::make('quantity')
                     ->numeric(),
-                TextInput::make('meter_event_name'),
+                TextInput::make('meter_event_name')
+                    ->maxLength(255),
             ]);
     }
 }

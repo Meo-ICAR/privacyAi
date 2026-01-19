@@ -14,49 +14,77 @@ class EmailProviderForm
         return $schema
             ->components([
                 TextInput::make('name')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255)
+                    ->helperText('Slug identificativo univoco (es: gmail, office365)'),
                 TextInput::make('display_name')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255)
+                    ->helperText("Nome visualizzato nell'interfaccia utente"),
                 TextInput::make('type')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255)
+                    ->helperText('Protocollo principale: imap, gmail_api, microsoft_graph'),
                 TextInput::make('icon'),
-                TextInput::make('color'),
-                TextInput::make('imap_host'),
+                TextInput::make('color')
+                    ->helperText('Codice esadecimale del colore brand per la UI'),
+                TextInput::make('imap_host')
+                    ->helperText('Indirizzo del server IMAP'),
                 TextInput::make('imap_port')
-                    ->numeric(),
-                TextInput::make('imap_encryption'),
+                    ->numeric()
+                    ->helperText('Porta IMAP (solitamente 993 per SSL)'),
+                TextInput::make('imap_encryption')
+                    ->helperText('Tipo di crittografia IMAP: ssl, tls o null'),
                 TextInput::make('pop3_host'),
                 TextInput::make('pop3_port')
                     ->numeric(),
                 TextInput::make('pop3_encryption'),
-                TextInput::make('smtp_host'),
+                TextInput::make('smtp_host')
+                    ->helperText("Indirizzo del server SMTP per l'invio"),
                 TextInput::make('smtp_port')
-                    ->numeric(),
-                TextInput::make('smtp_encryption'),
+                    ->numeric()
+                    ->helperText('Porta SMTP (es: 587 per STARTTLS)'),
+                TextInput::make('smtp_encryption')
+                    ->helperText('Tipo di crittografia SMTP: ssl o tls'),
                 Toggle::make('smtp_auth_required')
-                    ->required(),
-                TextInput::make('api_endpoint'),
-                TextInput::make('api_version'),
-                TextInput::make('oauth_client_id'),
-                TextInput::make('oauth_client_secret'),
-                TextInput::make('oauth_redirect_uri'),
-                TextInput::make('oauth_scopes'),
+                    ->required()
+                    ->helperText('Indica se il server richiede autenticazione per inviare'),
+                TextInput::make('api_endpoint')
+                    ->helperText('URL base per integrazioni API (es: Graph API)'),
+                TextInput::make('api_version')
+                    ->helperText("Versione specifica dell'API utilizzata"),
+                TextInput::make('oauth_client_id')
+                    ->helperText('ID cliente per autenticazione OAuth2'),
+                TextInput::make('oauth_client_secret')
+                    ->password()
+                    ->helperText('Segreto cliente per OAuth2 (da gestire con cautela)'),
+                TextInput::make('oauth_redirect_uri')
+                    ->helperText('URL di callback per il ritorno dal login social'),
+                TextInput::make('oauth_scopes')
+                    ->helperText("Permessi richiesti all'utente (JSON array)"),
                 TextInput::make('timeout')
                     ->required()
                     ->numeric()
-                    ->default(30),
+                    ->default(30)
+                    ->helperText('Secondi di attesa prima del fallimento connessione'),
                 Toggle::make('verify_ssl')
-                    ->required(),
+                    ->required()
+                    ->helperText('Verifica la validità del certificato SSL del server'),
                 TextInput::make('auth_type')
                     ->required()
-                    ->default('password'),
-                TextInput::make('settings'),
+                    ->default('password')
+                    ->helperText('Metodo di login: password, oauth, api_key'),
+                TextInput::make('settings')
+                    ->helperText('Configurazioni extra specifiche del provider in formato JSON'),
                 Toggle::make('is_active')
-                    ->required(),
+                    ->required()
+                    ->helperText('Disabilita il provider a livello globale se necessario'),
                 Textarea::make('description')
-                    ->columnSpanFull(),
+                    ->columnSpanFull()
+                    ->helperText('Breve descrizione del provider'),
                 Textarea::make('setup_instructions')
-                    ->columnSpanFull(),
+                    ->columnSpanFull()
+                    ->helperText("Istruzioni per l'utente per abilitare IMAP/OAuth sul proprio account"),
             ]);
     }
 }

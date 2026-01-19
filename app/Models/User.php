@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Mandante;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasTenants;
 use Filament\Panel;
@@ -12,11 +13,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements FilamentUser, HasTenants
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasUlids;
+    use HasFactory, Notifiable, HasUlids, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -53,11 +55,17 @@ class User extends Authenticatable implements FilamentUser, HasTenants
         ];
     }
 
+    /** Restituisce i mandanti a cui l'utente ha accesso */
+
     /**
      * Restituisce i mandanti a cui l'utente ha accesso
      */
     public function getTenants(Panel $panel): Collection
     {
+        if ($this->hasRole('super_admin')) {
+            return Mandante::all();
+        }
+
         // Se l'utente è legato a un solo mandante (Relazione 1-a-N)
         return Collection::wrap($this->mandante);
 
@@ -70,6 +78,10 @@ class User extends Authenticatable implements FilamentUser, HasTenants
      */
     public function canAccessTenant(Model $tenant): bool
     {
+        if ($this->hasRole('super_admin')) {
+            return true;
+        }
+
         // Logica di autorizzazione: l'utente deve appartenere a quel mandante
         return $this->mandante_id === $tenant->id;
     }

@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Mandante;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -28,15 +30,41 @@ class DatabaseSeeder extends Seeder
             MansioneSeeder::class,  // Catalogo ruoli e rischi privacy
         ]);
 
-        // 2. Creazione del Super-Admin (DPO Globale)
-        // Questo utente non appartiene a nessun mandante specifico (mandante_id = null)
+        // 2. Creazione del Super-Admin e Tenant di Default
 
-        User::factory()->create([
-            'name' => 'DPO Super Admin',
-            'email' => 'admin@privacycall.it',
-            'password' => Hash::make('password'),  // Ricorda di cambiarla!
-            'mandante_id' => null,
-        ]);
+        // 2a. Assicuriamoci che esista il ruolo super_admin
+        $role = Role::firstOrCreate(['name' => 'super_admin', 'guard_name' => 'web']);
+
+        // 2b. Creiamo un Tenant di default (necessario per Filament)
+        $mandante = Mandante::firstOrCreate(
+            ['p_iva' => '00000000000'],
+            [
+                'ragione_sociale' => 'PrivacyCall S.r.l.',
+                'titolare_trattamento' => 'Mario Rossi',
+                'email_referente' => 'admin@privacycall.it',
+                'is_active' => true,
+            ]
+        );
+
+        // 2c. Creiamo o aggiorniamo l'utente Admin
+        $user = User::firstOrCreate(
+            ['email' => 'admin@privacycall.it'],
+            [
+                'name' => 'DPO Super Admin',
+                'password' => Hash::make('password'),
+                'mandante_id' => $mandante->id,
+            ]
+        );
+
+        // Assicuriamoci che l'utente sia collegato al tenant e abbia il ruolo
+        if ($user->mandante_id !== $mandante->id) {
+            $user->mandante_id = $mandante->id;
+            $user->save();
+        }
+
+        if (! $user->hasRole('super_admin')) {
+            $user->assignRole($role);
+        }
 
         // 3. Esempio di Struttura Tenant (Dati di Test)
         // Se hai creato i seeder specifici, scommentali qui sotto.

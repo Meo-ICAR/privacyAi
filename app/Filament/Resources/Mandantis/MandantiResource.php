@@ -20,7 +20,9 @@ class MandantiResource extends Resource
 {
     protected static ?string $model = Mandanti::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-building-office-2';
+
+    protected static string|\UnitEnum|null $navigationGroup = 'Anagrafiche';
 
     public static function form(Schema $schema): Schema
     {

@@ -8,13 +8,37 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Table;
 
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\TextColumn;
+
 class DipendentisTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('nome')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('cognome')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('codice_fiscale')
+                    ->searchable(),
+                TextColumn::make('mansione.nome')
+                    ->label('Mansione')
+                    ->sortable(),
+                TextColumn::make('mandante.ragione_sociale')
+                    ->label('Mandante')
+                    ->sortable(),
+                TextColumn::make('filiale.nome')
+                    ->label('Filiale')
+                    ->sortable(),
+                TextColumn::make('fornitore.ragione_sociale')
+                    ->label('Fornitore')
+                    ->sortable(),
+                IconColumn::make('is_active')
+                    ->boolean(),
             ])
             ->filters([
                 //

@@ -20,7 +20,9 @@ class FormazioneDipendentiResource extends Resource
 {
     protected static ?string $model = FormazioneDipendenti::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-academic-cap';
+
+    protected static string|\UnitEnum|null $navigationGroup = 'Formazione';
 
     public static function form(Schema $schema): Schema
     {

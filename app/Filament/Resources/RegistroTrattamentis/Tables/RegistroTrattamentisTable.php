@@ -8,13 +8,26 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Table;
 
+use Filament\Tables\Columns\TextColumn;
+
 class RegistroTrattamentisTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('versione')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('data_aggiornamento')
+                    ->dateTime()
+                    ->sortable(),
+                TextColumn::make('mandante.ragione_sociale')
+                    ->label('Mandante')
+                    ->sortable(),
+                TextColumn::make('user.name')
+                    ->label('Autore')
+                    ->sortable(),
             ])
             ->filters([
                 //

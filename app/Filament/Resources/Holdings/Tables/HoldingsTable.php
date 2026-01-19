@@ -19,11 +19,15 @@ class HoldingsTable
                     ->label('ID')
                     ->searchable(),
                 TextColumn::make('ragione_sociale')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable()
+                    ->helperText('Nome del Gruppo o Holding'),
                 TextColumn::make('p_iva')
+                    ->label('P. IVA')
                     ->searchable(),
                 TextColumn::make('codice_gruppo')
-                    ->searchable(),
+                    ->searchable()
+                    ->description('Codice reportistica'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

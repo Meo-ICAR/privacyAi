@@ -8,13 +8,27 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Table;
 
+use Filament\Tables\Columns\TextColumn;
+
 class MandatariesTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('ragione_sociale')
+                    ->label('Mandataria')
+                    ->searchable()
+                    ->sortable()
+                    ->description(fn ($record) => $record->p_iva),
+                TextColumn::make('mandante.ragione_sociale')
+                    ->label('Mandante')
+                    ->sortable(),
+                TextColumn::make('titolare_trattamento')
+                    ->searchable(),
+                TextColumn::make('data_ricezione_nomina')
+                    ->date()
+                    ->sortable(),
             ])
             ->filters([
                 //

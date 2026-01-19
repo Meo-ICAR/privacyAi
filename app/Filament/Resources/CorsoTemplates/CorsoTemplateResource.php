@@ -20,7 +20,9 @@ class CorsoTemplateResource extends Resource
 {
     protected static ?string $model = CorsoTemplate::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-book-open';
+
+    protected static string|\UnitEnum|null $navigationGroup = 'Formazione';
 
     public static function form(Schema $schema): Schema
     {

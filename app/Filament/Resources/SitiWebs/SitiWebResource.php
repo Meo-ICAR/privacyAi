@@ -20,7 +20,9 @@ class SitiWebResource extends Resource
 {
     protected static ?string $model = SitiWeb::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-globe-americas';
+
+    protected static string|\UnitEnum|null $navigationGroup = 'Compliance';
 
     public static function form(Schema $schema): Schema
     {

@@ -20,7 +20,9 @@ class MansioniResource extends Resource
 {
     protected static ?string $model = Mansioni::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-briefcase';
+
+    protected static string|\UnitEnum|null $navigationGroup = 'Anagrafiche';
 
     public static function form(Schema $schema): Schema
     {

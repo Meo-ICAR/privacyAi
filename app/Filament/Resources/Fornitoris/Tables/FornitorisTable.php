@@ -8,13 +8,34 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Table;
 
+use Filament\Tables\Columns\TextColumn;
+
 class FornitorisTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('ragione_sociale')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('p_iva')
+                    ->label('P. IVA')
+                    ->searchable(),
+                TextColumn::make('responsabile_trattamento')
+                    ->limit(20),
+                TextColumn::make('locazione_dati')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'UE' => 'success',
+                        'USA' => 'warning',
+                        'Extra-UE' => 'danger',
+                    }),
+                TextColumn::make('mansione.nome')
+                    ->label('Ruolo'),
+                TextColumn::make('mandante.ragione_sociale')
+                    ->label('Mandante')
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

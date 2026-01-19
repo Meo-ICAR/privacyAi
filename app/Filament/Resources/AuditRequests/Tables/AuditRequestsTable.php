@@ -17,18 +17,29 @@ class AuditRequestsTable
             ->columns([
                 TextColumn::make('id')
                     ->label('ID')
-                    ->searchable(),
-                TextColumn::make('mandante_id')
-                    ->searchable(),
-                TextColumn::make('mandataria_id')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('mandante.ragione_sociale')
+                    ->label('Mandante')
+                    ->sortable(),
+                TextColumn::make('mandataria.ragione_sociale')
+                    ->label('Mandataria')
                     ->searchable(),
                 TextColumn::make('titolo')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable()
+                    ->helperText('Es: Audit Annuale Privacy 2026'),
                 TextColumn::make('data_inizio')
                     ->date()
                     ->sortable(),
                 TextColumn::make('stato')
-                    ->badge(),
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'aperto' => 'gray',
+                        'in_corso' => 'warning',
+                        'completato' => 'success',
+                        'archiviato' => 'info',
+                    }),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

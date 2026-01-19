@@ -20,12 +20,16 @@ class CorsoTemplatesTable
                     ->label('ID')
                     ->searchable(),
                 TextColumn::make('titolo')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable()
+                    ->helperText('Nome standard del percorso formativo'),
                 TextColumn::make('validita_mesi')
                     ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->label('Validità (mesi)'),
                 IconColumn::make('is_obbligatorio')
-                    ->boolean(),
+                    ->boolean()
+                    ->label('Obbligatorio'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

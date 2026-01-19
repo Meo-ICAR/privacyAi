@@ -12,10 +12,16 @@ class HoldingForm
         return $schema
             ->components([
                 TextInput::make('ragione_sociale')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255)
+                    ->helperText('Nome del Gruppo o Holding'),
                 TextInput::make('p_iva')
-                    ->required(),
-                TextInput::make('codice_gruppo'),
+                    ->required()
+                    ->maxLength(11)
+                    ->unique(ignoreRecord: true),
+                TextInput::make('codice_gruppo')
+                    ->maxLength(255)
+                    ->helperText('Codice per reportistica aggregata'),
             ]);
     }
 }

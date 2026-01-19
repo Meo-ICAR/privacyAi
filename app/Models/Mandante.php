@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-class Mandanti extends Model implements HasMedia
+
+class Mandante extends Model implements HasMedia
 {
     use HasUlids, InteractsWithMedia;
+
+    protected $table = 'mandanti';
 
     protected $fillable = [
         'ragione_sociale',
@@ -19,6 +22,5 @@ class Mandanti extends Model implements HasMedia
         'website',
     ];
 
-    protected $casts = [
-            ];
+    protected $casts = [];
 }

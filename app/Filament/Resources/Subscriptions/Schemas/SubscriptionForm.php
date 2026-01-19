@@ -16,12 +16,17 @@ class SubscriptionForm
                     ->required()
                     ->numeric(),
                 TextInput::make('type')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255),
                 TextInput::make('stripe_id')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255)
+                    ->unique(ignoreRecord: true),
                 TextInput::make('stripe_status')
-                    ->required(),
-                TextInput::make('stripe_price'),
+                    ->required()
+                    ->maxLength(255),
+                TextInput::make('stripe_price')
+                    ->maxLength(255),
                 TextInput::make('quantity')
                     ->numeric(),
                 DateTimePicker::make('trial_ends_at'),

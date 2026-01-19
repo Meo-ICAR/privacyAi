@@ -8,13 +8,25 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Table;
 
+use Filament\Tables\Columns\TextColumn;
+
 class MisuraSicurezzasTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('codice')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('nome')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('tipo')
+                    ->searchable()
+                    ->badge(),
+                TextColumn::make('area')
+                    ->searchable(),
             ])
             ->filters([
                 //

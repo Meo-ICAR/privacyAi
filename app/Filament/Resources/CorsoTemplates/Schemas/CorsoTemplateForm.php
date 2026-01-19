@@ -14,15 +14,20 @@ class CorsoTemplateForm
         return $schema
             ->components([
                 TextInput::make('titolo')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255)
+                    ->helperText('Nome standard del percorso formativo'),
                 Textarea::make('descrizione')
-                    ->columnSpanFull(),
+                    ->columnSpanFull()
+                    ->helperText('Dettagli sugli argomenti trattati'),
                 TextInput::make('validita_mesi')
                     ->required()
                     ->numeric()
-                    ->default(12),
+                    ->default(12)
+                    ->helperText('Periodo di validità del certificato prima del rinnovo'),
                 Toggle::make('is_obbligatorio')
-                    ->required(),
+                    ->default(true)
+                    ->helperText('Indica se il corso è richiesto per la compliance minima'),
             ]);
     }
 }

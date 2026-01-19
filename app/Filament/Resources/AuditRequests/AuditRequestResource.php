@@ -20,7 +20,9 @@ class AuditRequestResource extends Resource
 {
     protected static ?string $model = AuditRequest::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-magnifying-glass-circle';
+
+    protected static string|\UnitEnum|null $navigationGroup = 'Audit';
 
     public static function form(Schema $schema): Schema
     {

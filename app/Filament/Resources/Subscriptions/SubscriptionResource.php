@@ -20,7 +20,9 @@ class SubscriptionResource extends Resource
 {
     protected static ?string $model = Subscription::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-credit-card';
+
+    protected static string|\UnitEnum|null $navigationGroup = 'Configurazione';
 
     public static function form(Schema $schema): Schema
     {

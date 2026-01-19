@@ -20,7 +20,9 @@ class FornitoriResource extends Resource
 {
     protected static ?string $model = Fornitori::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-truck';
+
+    protected static string|\UnitEnum|null $navigationGroup = 'Anagrafiche';
 
     public static function form(Schema $schema): Schema
     {

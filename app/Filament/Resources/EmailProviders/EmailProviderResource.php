@@ -20,7 +20,9 @@ class EmailProviderResource extends Resource
 {
     protected static ?string $model = EmailProvider::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-server';
+
+    protected static string|\UnitEnum|null $navigationGroup = 'Configurazione';
 
     public static function form(Schema $schema): Schema
     {
