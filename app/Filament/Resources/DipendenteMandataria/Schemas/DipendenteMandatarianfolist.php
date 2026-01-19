@@ -6,7 +6,7 @@ use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
-class DipendenteMandatariaInfolist
+class DipendenteMandatariumInfolist
 {
     public static function configure(Schema $schema): Schema
     {
