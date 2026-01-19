@@ -21,7 +21,7 @@ class HoldingsTable
                 TextColumn::make('ragione_sociale')
                     ->searchable()
                     ->sortable()
-                    ->helperText('Nome del Gruppo o Holding'),
+                    ->description('Nome del Gruppo o Holding'),
                 TextColumn::make('p_iva')
                     ->label('P. IVA')
                     ->searchable(),

@@ -9,7 +9,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class DpoAnagrafica extends Model implements HasMedia
 {
     use HasUlids, InteractsWithMedia;
-
+    protected $table = 'dpo_anagrafica';
     protected $fillable = [
         'denominazione',
         'codice_fiscale',

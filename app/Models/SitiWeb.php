@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+
 class SitiWeb extends Model implements HasMedia
 {
     use HasUlids, InteractsWithMedia;
+
+    protected $table = 'siti_web';
 
     protected $fillable = [
         'mandante_id',
@@ -21,6 +24,10 @@ class SitiWeb extends Model implements HasMedia
         'hosting_provider',
     ];
 
-    protected $casts = [
-            ];
+    protected $casts = [];
+
+    public function mandante()
+    {
+        return $this->belongsTo(Mandante::class);
+    }
 }

@@ -19,7 +19,7 @@ class MansionisTable
                 TextColumn::make('nome')
                     ->searchable()
                     ->sortable()
-                    ->description(fn (Mansioni $record): string => $record->descrizione ?? ''),
+                    ->description(fn (\App\Models\Mansioni $record): string => $record->descrizione ?? ''),
                 TextColumn::make('livello_rischio')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {

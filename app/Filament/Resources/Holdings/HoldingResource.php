@@ -20,6 +20,8 @@ class HoldingResource extends Resource
 {
     protected static ?string $model = Holding::class;
 
+    protected static bool $isScopedToTenant = false;
+
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-globe-alt';
 
     protected static string|\UnitEnum|null $navigationGroup = 'Anagrafiche';

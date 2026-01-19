@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+
 class AuditFornitori extends Model implements HasMedia
 {
     use HasUlids, InteractsWithMedia;
+
+    protected $table = 'audit_fornitori';
 
     protected $fillable = [
         'anno_riferimento',
@@ -23,5 +26,21 @@ class AuditFornitori extends Model implements HasMedia
 
     protected $casts = [
         'data_esecuzione' => 'array',
-            ];
+    ];
+
+    /**
+     * Relazione many-to-one con Mandante
+     */
+    public function mandante()
+    {
+        return $this->belongsTo(Mandante::class);
+    }
+
+    /**
+     * Relazione many-to-one con Mandante
+     */
+    public function fornitore()
+    {
+        return $this->belongsTo(Fornitori::class);
+    }
 }

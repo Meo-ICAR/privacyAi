@@ -7,7 +7,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 
-class DipendenteMandatariumForm
+class DipendenteMandatariaForm
 {
     public static function configure(Schema $schema): Schema
     {

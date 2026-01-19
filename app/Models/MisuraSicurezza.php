@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+
 class MisuraSicurezza extends Model implements HasMedia
 {
     use HasUlids, InteractsWithMedia;
+
+    protected $table = 'misure_sicurezza';
 
     protected $fillable = [
         'codice',
@@ -18,6 +21,5 @@ class MisuraSicurezza extends Model implements HasMedia
         'descrizione',
     ];
 
-    protected $casts = [
-            ];
+    protected $casts = [];
 }

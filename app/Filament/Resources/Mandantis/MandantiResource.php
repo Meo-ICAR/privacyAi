@@ -9,16 +9,16 @@ use App\Filament\Resources\Mandantis\Pages\ViewMandanti;
 use App\Filament\Resources\Mandantis\Schemas\MandantiForm;
 use App\Filament\Resources\Mandantis\Schemas\MandantiInfolist;
 use App\Filament\Resources\Mandantis\Tables\MandantisTable;
-use App\Models\Mandanti;
-use BackedEnum;
+use App\Models\Mandante;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use BackedEnum;
 
 class MandantiResource extends Resource
 {
-    protected static ?string $model = Mandanti::class;
+    protected static ?string $model = Mandante::class;
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-building-office-2';
 

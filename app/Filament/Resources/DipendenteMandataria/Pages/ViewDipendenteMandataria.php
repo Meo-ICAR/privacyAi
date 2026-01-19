@@ -2,13 +2,13 @@
 
 namespace App\Filament\Resources\DipendenteMandataria\Pages;
 
-use App\Filament\Resources\DipendenteMandataria\DipendenteMandatariumResource;
+use App\Filament\Resources\DipendenteMandataria\DipendenteMandatariaResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
-class ViewDipendenteMandatarium extends ViewRecord
+class ViewDipendenteMandataria extends ViewRecord
 {
-    protected static string $resource = DipendenteMandatariumResource::class;
+    protected static string $resource = DipendenteMandatariaResource::class;
 
     protected function getHeaderActions(): array
     {
