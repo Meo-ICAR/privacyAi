@@ -22,6 +22,8 @@ class ServiziDpoResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-currency-euro';
 
+    protected static bool $isScopedToTenant = false;
+
     protected static string|\UnitEnum|null $navigationGroup = 'Configurazione';
 
     public static function form(Schema $schema): Schema

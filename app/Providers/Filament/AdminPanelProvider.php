@@ -28,7 +28,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->tenant(Mandante::class)
+            ->tenant(Mandante::class, slugAttribute: 'id')
             // Indica a Filament quale colonna usare per lo slug nell'URL (opzionale)
             //   ->tenantDomain('{tenant:slug}.privacyai.test')  // Se usi i sottodomini
             //   ->tenantRoutePrefix('client')  // URL diventerà: /admin/client/{id}/...

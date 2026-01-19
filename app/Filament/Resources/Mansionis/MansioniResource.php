@@ -22,6 +22,8 @@ class MansioniResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-briefcase';
 
+    protected static bool $isScopedToTenant = false;
+
     protected static string|\UnitEnum|null $navigationGroup = 'Anagrafiche';
 
     public static function form(Schema $schema): Schema

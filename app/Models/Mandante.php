@@ -7,9 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Mandante extends Model implements HasMedia
+use Filament\Models\Contracts\HasName;
+
+class Mandante extends Model implements HasMedia, HasName
 {
     use HasUlids, InteractsWithMedia;
+
+    public function getFilamentName(): string
+    {
+        return $this->ragione_sociale;
+    }
 
     protected $table = 'mandanti';
 
