@@ -6,10 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-
 class EmailProvider extends Model implements HasMedia
 {
     use HasUlids, InteractsWithMedia;
 
-    //
+    protected $fillable = [
+        'pop3_host',
+        'pop3_port',
+        'pop3_encryption',
+    ];
+
+    protected $casts = [
+            ];
 }

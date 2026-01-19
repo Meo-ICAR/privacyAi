@@ -6,10 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-
 class CorsoTemplate extends Model implements HasMedia
 {
     use HasUlids, InteractsWithMedia;
 
-    //
+    protected $fillable = [
+        'titolo',
+        'descrizione',
+        'validita_mesi',
+        'is_obbligatorio',
+    ];
+
+    protected $casts = [
+            ];
 }

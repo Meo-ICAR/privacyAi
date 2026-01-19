@@ -1,0 +1,56 @@
+<?php
+
+namespace App\Filament\Resources\Mandantis;
+
+use App\Filament\Resources\Mandantis\Pages\CreateMandanti;
+use App\Filament\Resources\Mandantis\Pages\EditMandanti;
+use App\Filament\Resources\Mandantis\Pages\ListMandantis;
+use App\Filament\Resources\Mandantis\Pages\ViewMandanti;
+use App\Filament\Resources\Mandantis\Schemas\MandantiForm;
+use App\Filament\Resources\Mandantis\Schemas\MandantiInfolist;
+use App\Filament\Resources\Mandantis\Tables\MandantisTable;
+use App\Models\Mandanti;
+use BackedEnum;
+use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Table;
+
+class MandantiResource extends Resource
+{
+    protected static ?string $model = Mandanti::class;
+
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+
+    public static function form(Schema $schema): Schema
+    {
+        return MandantiForm::configure($schema);
+    }
+
+    public static function infolist(Schema $schema): Schema
+    {
+        return MandantiInfolist::configure($schema);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return MandantisTable::configure($table);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => ListMandantis::route('/'),
+            'create' => CreateMandanti::route('/create'),
+            'view' => ViewMandanti::route('/{record}'),
+            'edit' => EditMandanti::route('/{record}/edit'),
+        ];
+    }
+}

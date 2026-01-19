@@ -6,10 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-
 class Mandanti extends Model implements HasMedia
 {
     use HasUlids, InteractsWithMedia;
 
-    //
+    protected $fillable = [
+        'ragione_sociale',
+        'p_iva',
+        'titolare_trattamento',
+        'email_referente',
+        'is_active',
+        'website',
+    ];
+
+    protected $casts = [
+            ];
 }
