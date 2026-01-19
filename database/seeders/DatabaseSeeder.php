@@ -15,11 +15,36 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // 1. Tabelle Globali (Configurazioni di Sistema)
+        // Queste tabelle non dipendono da nessuno e sono condivise tra tutti i tenant.
+        $this->call([
+            EmailProviderSeeder::class,  // Configurazione IMAP/OAuth2
+            MansioneSeeder::class,  // Catalogo ruoli e rischi privacy
+            CorsoTemplateSeeder::class,  // Catalogo corsi di formazione standard
+        ]);
+
+        // 2. Creazione del Super-Admin (DPO Globale)
+        // Questo utente non appartiene a nessun mandante specifico (mandante_id = null)
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'DPO Super Admin',
+            'email' => 'admin@privacycall.it',
+            'password' => Hash::make('password'),  // Ricorda di cambiarla!
+            'mandante_id' => null,
         ]);
+
+        // 3. Esempio di Struttura Tenant (Dati di Test)
+        // Se hai creato i seeder specifici, scommentali qui sotto.
+        // L'ordine è: Mandante -> Filiali/Mandatarie -> Dipendenti -> Formazione
+
+        /*
+         * $this->call([
+         *     MandanteSeeder::class,
+         *     FilialeSeeder::class,
+         *     MandatariaSeeder::class,
+         *     DipendenteSeeder::class,
+         *     CanaleEmailSeeder::class,
+         * ]);
+         */
     }
 }

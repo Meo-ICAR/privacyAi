@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -18,9 +17,11 @@ return new class extends Migration
 
             $table->string('ragione_sociale')->comment('Titolare del Trattamento (Cliente del Call Center)');
             $table->string('p_iva', 11);
-
+            $table->string('website')->nullable()->comment('Sito web aziendale');
+            $table->string('landingpage')->nullable()->comment('Landing page per mandataria');
             // Privacy Logic: La Mandataria nomina TE (Mandante)
             $table->date('data_ricezione_nomina')->comment('Data in cui la Mandataria ha nominato il Mandante come Responsabile');
+            $table->string('titolare_trattamento')->comment('Titolare del Trattamento');
             $table->string('email_referente')->nullable()->comment('Contatto primario per comunicazioni privacy');
 
             $table->timestamps();
