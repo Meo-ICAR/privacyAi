@@ -48,7 +48,6 @@ class DipendentiForm
                     ->helperText('Sede fisica di assegnazione del dipendente'),
                 Select::make('fornitore_id')
                     ->relationship('fornitore', 'ragione_sociale')
-                    ->required()
                     ->searchable()
                     ->preload(),
                 Toggle::make('is_active')

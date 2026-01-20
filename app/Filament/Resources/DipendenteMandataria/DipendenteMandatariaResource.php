@@ -20,6 +20,9 @@ class DipendenteMandatariaResource extends Resource
 {
     protected static ?string $model = DipendenteMandataria::class;
 
+
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-user-group';
 
     protected static string|\UnitEnum|null $navigationGroup = 'Anagrafiche';

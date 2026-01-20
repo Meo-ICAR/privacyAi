@@ -28,7 +28,7 @@ class AuditRequestsTable
                 TextColumn::make('titolo')
                     ->searchable()
                     ->sortable()
-                    ->helperText('Es: Audit Annuale Privacy 2026'),
+                    ->description('Es: Audit Annuale Privacy 2026'),
                 TextColumn::make('data_inizio')
                     ->date()
                     ->sortable(),

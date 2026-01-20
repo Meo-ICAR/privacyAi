@@ -46,4 +46,20 @@ class Mandante extends Model implements HasMedia, HasName
     {
         return $this->hasMany(Dipendente::class);
     }
+
+    /**
+     * Relazione one-to-many con Filiali
+     */
+    public function filiali(): HasMany
+    {
+        return $this->hasMany(Filiali::class);
+    }
+
+    /**
+     * Relazione one-to-many con Siti Web
+     */
+    public function sitiWeb(): HasMany
+    {
+        return $this->hasMany(SitiWeb::class);
+    }
 }

@@ -24,6 +24,8 @@ class FilialiResource extends Resource
 
     protected static string|\UnitEnum|null $navigationGroup = 'Anagrafiche';
 
+    protected static bool $shouldRegisterNavigation = false;
+
     public static function form(Schema $schema): Schema
     {
         return FilialiForm::configure($schema);

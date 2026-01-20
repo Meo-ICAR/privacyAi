@@ -20,6 +20,8 @@ class AuditRequestResource extends Resource
 {
     protected static ?string $model = AuditRequest::class;
 
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-magnifying-glass-circle';
 
     protected static string|\UnitEnum|null $navigationGroup = 'Audit';

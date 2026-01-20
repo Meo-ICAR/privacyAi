@@ -20,7 +20,7 @@ class DocumentiTiposTable
                 TextColumn::make('nome')
                     ->searchable()
                     ->sortable()
-                    ->helperText('Es: Nomina Art. 28'),
+                    ->description('Es: Nomina Art. 28'),
                 TextColumn::make('categoria')
                     ->searchable()
                     ->sortable()

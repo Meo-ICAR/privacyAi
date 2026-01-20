@@ -47,4 +47,25 @@ class Dipendenti extends Model implements HasMedia
     {
         return $this->belongsTo(Filiali::class);
     }
+
+    /**
+     * Relazione many-to-many con Mandatarie
+     */
+    public function mandatarie()
+    {
+        return $this->belongsToMany(Mandatarie::class, 'dipendente_mandataria', 'dipendente_id', 'mandataria_id')
+            ->using(DipendenteMandataria::class)
+            ->withPivot(['data_autorizzazione', 'is_active'])
+            ->withTimestamps();
+    }
+
+    public function mansione()
+    {
+        return $this->belongsTo(Mansioni::class);
+    }
+
+    public function fornitore()
+    {
+        return $this->belongsTo(Fornitori::class);
+    }
 }

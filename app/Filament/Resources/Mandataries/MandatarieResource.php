@@ -42,7 +42,8 @@ class MandatarieResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\DipendentiRelationManager::class,
+            RelationManagers\AuditRequestsRelationManager::class,
         ];
     }
 

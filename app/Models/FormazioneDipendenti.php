@@ -26,4 +26,19 @@ class FormazioneDipendenti extends Model implements HasMedia
         'data_conseguimento' => 'array',
         'data_scadenza' => 'array',
     ];
+
+    public function mandante()
+    {
+        return $this->belongsTo(Mandante::class);
+    }
+
+    public function dipendente()
+    {
+        return $this->belongsTo(Dipendenti::class);
+    }
+
+    public function corsoTemplate()
+    {
+        return $this->belongsTo(CorsoTemplate::class);
+    }
 }

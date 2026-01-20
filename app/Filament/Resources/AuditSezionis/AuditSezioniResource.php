@@ -10,11 +10,11 @@ use App\Filament\Resources\AuditSezionis\Schemas\AuditSezioniForm;
 use App\Filament\Resources\AuditSezionis\Schemas\AuditSezioniInfolist;
 use App\Filament\Resources\AuditSezionis\Tables\AuditSezionisTable;
 use App\Models\AuditSezioni;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use BackedEnum;
 
 class AuditSezioniResource extends Resource
 {
@@ -23,6 +23,8 @@ class AuditSezioniResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-list-bullet';
 
     protected static string|\UnitEnum|null $navigationGroup = 'Audit';
+
+    protected static bool $isScopedToTenant = false;
 
     public static function form(Schema $schema): Schema
     {

@@ -11,7 +11,7 @@ class MisuraSicurezza extends Model implements HasMedia
 {
     use HasUlids, InteractsWithMedia;
 
-    protected $table = 'misure_sicurezza';
+    protected $table = 'misura_sicurezza';
 
     protected $fillable = [
         'codice',

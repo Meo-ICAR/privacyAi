@@ -25,7 +25,7 @@ class Mandatarie extends Model implements HasMedia
     ];
 
     protected $casts = [
-        'data_ricezione_nomina' => 'array',
+        'data_ricezione_nomina' => 'date',
     ];
 
     /**
@@ -35,5 +35,24 @@ class Mandatarie extends Model implements HasMedia
     public function mandante()
     {
         return $this->belongsTo(Mandante::class);
+    }
+
+    /**
+     * Relazione many-to-many con Dipendenti
+     */
+    public function dipendenti()
+    {
+        return $this->belongsToMany(Dipendenti::class, 'dipendente_mandataria', 'mandataria_id', 'dipendente_id')
+            ->using(DipendenteMandataria::class)
+            ->withPivot(['data_autorizzazione', 'is_active'])
+            ->withTimestamps();
+    }
+
+    /**
+     * Relazione one-to-many con Audit Requests
+     */
+    public function auditRequests()
+    {
+        return $this->hasMany(AuditRequest::class, 'mandataria_id');
     }
 }

@@ -10,11 +10,11 @@ use App\Filament\Resources\EmailProviders\Schemas\EmailProviderForm;
 use App\Filament\Resources\EmailProviders\Schemas\EmailProviderInfolist;
 use App\Filament\Resources\EmailProviders\Tables\EmailProvidersTable;
 use App\Models\EmailProvider;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use BackedEnum;
 
 class EmailProviderResource extends Resource
 {

@@ -19,12 +19,20 @@ class DipendenteMandataria extends Model implements HasMedia
     ];
 
     protected $casts = [
-        'mandataria_id' => 'array',
         'data_autorizzazione' => 'array',
+        'is_active' => 'boolean',
     ];
 
     /**
-     * Relazione many-to-one con Mandante
+     * Relazione many-to-one con Dipendente
+     */
+    public function dipendente()
+    {
+        return $this->belongsTo(Dipendenti::class);
+    }
+
+    /**
+     * Relazione many-to-one con Mandataria
      */
     public function mandataria()
     {

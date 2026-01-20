@@ -22,8 +22,7 @@ class AuditRequest extends Model implements HasMedia
     ];
 
     protected $casts = [
-        'mandataria_id' => 'array',
-        'data_inizio' => 'array',
+        'data_inizio' => 'date',
     ];
 
     /**
@@ -32,5 +31,13 @@ class AuditRequest extends Model implements HasMedia
     public function mandante()
     {
         return $this->belongsTo(Mandante::class);
+    }
+
+    /**
+     * Relazione many-to-one con Mandataria
+     */
+    public function mandataria()
+    {
+        return $this->belongsTo(Mandatarie::class);
     }
 }

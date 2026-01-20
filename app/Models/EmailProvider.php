@@ -2,16 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class EmailProvider extends Model implements HasMedia
 {
-    use HasUlids, InteractsWithMedia;
+    use InteractsWithMedia;
 
-    protected $table = 'email_provider';
+    protected $table = 'email_providers';
 
     protected $fillable = [
         'pop3_host',

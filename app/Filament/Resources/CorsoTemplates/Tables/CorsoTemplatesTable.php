@@ -22,7 +22,7 @@ class CorsoTemplatesTable
                 TextColumn::make('titolo')
                     ->searchable()
                     ->sortable()
-                    ->helperText('Nome standard del percorso formativo'),
+                    ->description('Nome standard del percorso formativo'),
                 TextColumn::make('validita_mesi')
                     ->numeric()
                     ->sortable()

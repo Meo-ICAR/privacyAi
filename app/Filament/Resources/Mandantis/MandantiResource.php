@@ -42,7 +42,8 @@ class MandantiResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\FilialiRelationManager::class,
+            RelationManagers\SitiWebRelationManager::class,
         ];
     }
 

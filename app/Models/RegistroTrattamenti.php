@@ -25,4 +25,11 @@ class RegistroTrattamenti extends Model implements HasMedia
         'payload' => 'array',
         'data_aggiornamento' => 'array',
     ];
+    /**
+     * Relazione many-to-one con Mandante
+     */
+    public function mandante()
+    {
+        return $this->belongsTo(Mandante::class);
+    }
 }

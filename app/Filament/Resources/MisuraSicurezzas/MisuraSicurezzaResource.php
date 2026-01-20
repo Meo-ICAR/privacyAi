@@ -20,6 +20,8 @@ class MisuraSicurezzaResource extends Resource
 {
     protected static ?string $model = MisuraSicurezza::class;
 
+
+
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-lock-closed';
 
     protected static bool $isScopedToTenant = false;
