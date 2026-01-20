@@ -119,8 +119,8 @@
                                     </a>
                                 @endif
                                 @if (Route::has('login'))
-                                    <a href="{{ route('login') }}" class="px-8 py-4 text-lg font-semibold text-white bg-purple-700/50 backdrop-blur-sm border-2 border-white/50 rounded-lg hover:bg-white hover:text-purple-600 transition-all text-center">
-                                        Accedi
+                                    <a href="{{ route('login') }}" class="px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-purple-700 to-indigo-700 rounded-lg hover:from-purple-800 hover:to-indigo-800 transition-all shadow-xl hover:shadow-2xl text-center">
+                                        <i class="fas fa-sign-in-alt mr-2"></i> Accedi
                                     </a>
                                 @endif
                             @endauth
