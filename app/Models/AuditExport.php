@@ -11,7 +11,7 @@ class AuditExport extends Model implements HasMedia
 {
     use HasUlids, InteractsWithMedia;
 
-    protected $table = 'audit_export';
+    protected $table = 'audit_exports';
 
     protected $fillable = [
         'tipo_report',
