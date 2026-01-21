@@ -14,12 +14,14 @@ class DipendenteMandataria extends Model implements HasMedia
     protected $fillable = [
         'dipendente_id',
         'mandataria_id',
+        'mansione_id',
         'data_autorizzazione',
         'is_active',
     ];
 
     protected $casts = [
-        'data_autorizzazione' => 'array',
+        'mansione_id' => 'string',
+        'data_autorizzazione' => 'date',
         'is_active' => 'boolean',
     ];
 
@@ -37,5 +39,13 @@ class DipendenteMandataria extends Model implements HasMedia
     public function mandataria()
     {
         return $this->belongsTo(Mandatarie::class);
+    }
+
+    /**
+     * Relazione many-to-one con Mansione
+     */
+    public function mansione()
+    {
+        return $this->belongsTo(Mansioni::class);
     }
 }

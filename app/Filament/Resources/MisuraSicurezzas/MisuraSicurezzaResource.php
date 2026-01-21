@@ -26,7 +26,7 @@ class MisuraSicurezzaResource extends Resource
 
     protected static bool $isScopedToTenant = false;
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Compliance';
+    protected static string|\UnitEnum|null $navigationGroup = 'GDPR Settings';
 
     public static function form(Schema $schema): Schema
     {

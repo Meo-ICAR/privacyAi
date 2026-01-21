@@ -17,6 +17,9 @@ return new class extends Migration
             // Relazioni
             $table->foreignUlid('dipendente_id')->constrained('dipendenti')->cascadeOnDelete();
             $table->foreignUlid('mandataria_id')->constrained('mandatarie')->cascadeOnDelete();
+            $table->foreignUlid('mansione_id')->constrained('mansioni')
+             ->comment('Ruolo aziendale per la Mandataria')
+            ->cascadeOnDelete();
 
             // Campi di Compliance
             $table->date('data_autorizzazione')->comment('Data in cui il dipendente è stato autorizzato a operare su questa specifica Mandataria');

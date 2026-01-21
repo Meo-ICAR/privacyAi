@@ -24,7 +24,7 @@ class CorsoTemplateResource extends Resource
 
     protected static bool $isScopedToTenant = false;
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Formazione';
+    protected static string|\UnitEnum|null $navigationGroup = 'GDPR Settings';
 
     public static function form(Schema $schema): Schema
     {

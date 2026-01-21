@@ -55,7 +55,7 @@ class Dipendenti extends Model implements HasMedia
     {
         return $this->belongsToMany(Mandatarie::class, 'dipendente_mandataria', 'dipendente_id', 'mandataria_id')
             ->using(DipendenteMandataria::class)
-            ->withPivot(['data_autorizzazione', 'is_active'])
+            ->withPivot(['mansione_id', 'data_autorizzazione', 'is_active'])
             ->withTimestamps();
     }
 

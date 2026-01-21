@@ -22,7 +22,7 @@ class AuditSezioniResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-list-bullet';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Audit';
+  protected static string|\UnitEnum|null $navigationGroup = 'GDPR Settings';
 
     protected static bool $isScopedToTenant = false;
 
