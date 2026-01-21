@@ -6,6 +6,7 @@ use Filament\Schemas\Schema;
 
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 
@@ -60,6 +61,13 @@ class FornitoriForm
                     ->searchable()
                     ->preload()
                     ->helperText('Tipologia di azienda'),
+                SpatieMediaLibraryFileUpload::make('contratto')
+                    ->collection('contratto')
+                    ->helperText('Contratto DPA firmato'),
+                SpatieMediaLibraryFileUpload::make('documenti')
+                    ->collection('documenti')
+                    ->multiple()
+                    ->helperText('Certificazioni ISO, Privacy Policy, etc.'),
             ]);
     }
 }

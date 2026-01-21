@@ -6,6 +6,7 @@ use Filament\Schemas\Schema;
 
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 
 class MandatarieForm
@@ -47,6 +48,10 @@ class MandatarieForm
                     ->searchable()
                     ->preload()
                     ->helperText('Tipologia di azienda'),
+                SpatieMediaLibraryFileUpload::make('documenti')
+                    ->collection('documenti')
+                    ->multiple()
+                    ->helperText('Documenti mandante/mandataria'),
             ]);
     }
 }

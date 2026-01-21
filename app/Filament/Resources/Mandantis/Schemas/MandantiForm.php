@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Mandantis\Schemas;
 use Filament\Schemas\Schema;
 
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 
@@ -53,6 +54,14 @@ class MandantiForm
                 Toggle::make('is_active')
                     ->default(true)
                     ->helperText('Stato di validità del contratto/tenant'),
+                SpatieMediaLibraryFileUpload::make('logo')
+                    ->collection('logo')
+                    ->image()
+                    ->helperText('Logo aziendale'),
+                SpatieMediaLibraryFileUpload::make('documenti')
+                    ->collection('documenti')
+                    ->multiple()
+                    ->helperText('Documenti generali (Visura, DPA, etc.)'),
             ]);
     }
 }

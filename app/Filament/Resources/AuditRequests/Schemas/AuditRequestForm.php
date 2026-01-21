@@ -4,6 +4,7 @@ namespace App\Filament\Resources\AuditRequests\Schemas;
 
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -26,6 +27,10 @@ class AuditRequestForm
         ])
                     ->default('aperto')
                     ->required(),
+                SpatieMediaLibraryFileUpload::make('documenti')
+                    ->collection('documenti')
+                    ->multiple()
+                    ->helperText('Documentazione allegata alla richiesta'),
             ]);
     }
 }

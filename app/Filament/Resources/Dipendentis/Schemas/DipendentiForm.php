@@ -6,6 +6,7 @@ use Filament\Schemas\Schema;
 
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 
@@ -44,6 +45,13 @@ class DipendentiForm
                 Toggle::make('is_active')
                     ->default(true)
                     ->helperText("Stato del dipendente nell'organico attivo"),
+                SpatieMediaLibraryFileUpload::make('documento_identita')
+                    ->collection('documento_identita')
+                    ->helperText('Copia del documento di identità (Pest PII)'),
+                SpatieMediaLibraryFileUpload::make('documenti')
+                    ->collection('documenti')
+                    ->multiple()
+                    ->helperText('Contratti, Lettere di incarico, etc.'),
             ]);
     }
 }

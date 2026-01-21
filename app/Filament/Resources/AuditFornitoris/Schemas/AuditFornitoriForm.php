@@ -6,6 +6,7 @@ use Filament\Schemas\Schema;
 
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 
@@ -36,6 +37,13 @@ class AuditFornitoriForm
                 Select::make('eseguito_da')
                     ->relationship('user', 'name')
                     ->searchable(),
+                SpatieMediaLibraryFileUpload::make('report')
+                    ->collection('report')
+                    ->helperText('Report finale dell\'audit'),
+                SpatieMediaLibraryFileUpload::make('documenti')
+                    ->collection('documenti')
+                    ->multiple()
+                    ->helperText('Evidenze raccolte durante l\'audit'),
             ]);
     }
 }
