@@ -62,4 +62,12 @@ class Dipendenti extends Model implements HasMedia
     {
         return $this->belongsTo(Fornitori::class);
     }
+
+    /**
+     * Relazione many-to-many con Corsi
+     */
+    public function corsi()
+    {
+        return $this->belongsToMany(Corso::class, 'corso_dipendente', 'dipendente_id', 'corso_id');
+    }
 }

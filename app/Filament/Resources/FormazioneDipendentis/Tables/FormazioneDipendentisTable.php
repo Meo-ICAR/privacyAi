@@ -36,6 +36,7 @@ class FormazioneDipendentisTable
                         'valido' => 'success',
                         'in_scadenza' => 'warning',
                         'scaduto' => 'danger',
+                        default => 'gray',
                     }),
             ])
             ->filters([

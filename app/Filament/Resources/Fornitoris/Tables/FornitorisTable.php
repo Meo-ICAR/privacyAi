@@ -30,6 +30,7 @@ class FornitorisTable
                         'UE' => 'success',
                         'USA' => 'warning',
                         'Extra-UE' => 'danger',
+                        default => 'gray',
                     }),
                 TextColumn::make('mansione.nome')
                     ->label('Ruolo'),

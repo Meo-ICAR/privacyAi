@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\AuditRequests\Tables;
+namespace App\Filament\Resources\Corsos\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -9,7 +9,7 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class AuditRequestsTable
+class CorsosTable
 {
     public static function configure(Table $table): Table
     {
@@ -17,25 +17,19 @@ class AuditRequestsTable
             ->columns([
                 TextColumn::make('titolo')
                     ->searchable()
-                    ->sortable()
-                    ->description('Es: Audit Annuale Privacy 2026'),
-                TextColumn::make('data_inizio')
+                    ->sortable(),
+                TextColumn::make('data')
                     ->date()
                     ->sortable(),
-                TextColumn::make('stato')
-                    ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'aperto' => 'gray',
-                        'in_corso' => 'warning',
-                        'completato' => 'success',
-                        'archiviato' => 'info',
-                        default => 'gray',
-                    }),
+                TextColumn::make('luogo')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('url')
+                    ->label('Link Corso')
+                    ->url(fn ($record) => $record->url)
+                    ->openUrlInNewTab()
+                    ->placeholder('-'),
                 TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

@@ -25,6 +25,7 @@ class AuditFornitorisTable
                         'In Corso' => 'warning',
                         'Completato' => 'success',
                         'Annullato' => 'danger',
+                        default => 'gray',
                     }),
                 TextColumn::make('punteggio_compliance')
                     ->numeric()

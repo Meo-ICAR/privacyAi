@@ -24,7 +24,7 @@ class ServiziDpoResource extends Resource
 
     protected static bool $isScopedToTenant = false;
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Configurazione';
+    protected static string|\UnitEnum|null $navigationGroup = 'Listino';
 
     public static function form(Schema $schema): Schema
     {

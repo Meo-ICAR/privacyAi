@@ -26,6 +26,7 @@ class MansionisTable
                         'basso' => 'success',
                         'medio' => 'warning',
                         'alto' => 'danger',
+                        default => 'gray',
                     }),
             ])
             ->filters([

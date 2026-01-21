@@ -26,7 +26,7 @@ class FormazioneDipendentiSeeder extends Seeder
                 'corso_template_id' => $corso->id,
                 'data_conseguimento' => now()->subMonths(3)->format('Y-m-d'),
                 'data_scadenza' => now()->addMonths(9)->format('Y-m-d'),
-                'stato' => 'completato',
+                'stato' => 'valido',
             ]);
         }
     }

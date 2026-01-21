@@ -24,7 +24,7 @@ class HoldingResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-globe-alt';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Anagrafiche';
+    protected static string|\UnitEnum|null $navigationGroup = 'Configurazioni';
 
     public static function form(Schema $schema): Schema
     {
