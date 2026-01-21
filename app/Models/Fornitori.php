@@ -14,7 +14,7 @@ class Fornitori extends Model implements HasMedia
     protected $table = 'fornitori';
 
     protected $fillable = [
-        'ragione_sociale',database/migrations
+        'ragione_sociale',
         'p_iva',
         'website',
         'responsabile_trattamento',
