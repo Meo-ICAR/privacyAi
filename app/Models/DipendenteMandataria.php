@@ -3,13 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class DipendenteMandataria extends Model implements HasMedia
+class DipendenteMandataria extends Pivot implements HasMedia
 {
     use HasUlids, InteractsWithMedia;
+
+    protected $table = 'dipendente_mandataria';
+
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     protected $fillable = [
         'dipendente_id',

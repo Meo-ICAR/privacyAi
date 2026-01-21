@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Dipendente extends Model
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+
+class Dipendente extends Model implements HasMedia
 {
-    use SoftDeletes, BelongsToMandante;
+    use SoftDeletes, BelongsToMandante, InteractsWithMedia;
 
     protected $table = 'dipendenti';
 

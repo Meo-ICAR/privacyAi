@@ -33,6 +33,9 @@ class Corso extends Model implements HasMedia
      */
     public function dipendenti(): BelongsToMany
     {
-        return $this->belongsToMany(Dipendenti::class, 'corso_dipendente', 'corso_id', 'dipendente_id');
+        return $this->belongsToMany(Dipendenti::class, 'corso_dipendente', 'corso_id', 'dipendente_id')
+            ->using(CorsoDipendente::class)
+            ->withPivot('id')
+            ->withTimestamps();
     }
 }

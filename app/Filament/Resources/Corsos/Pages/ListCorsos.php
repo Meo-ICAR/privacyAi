@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Corsos\Pages;
 
-use App\Filament\Resources\CorsoResource;
+use App\Filament\Resources\Corsos\CorsoResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 

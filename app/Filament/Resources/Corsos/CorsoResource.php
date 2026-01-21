@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\Corsos;
 
 use App\Filament\Resources\Corsos\Pages;
 use App\Filament\Resources\Corsos\Schemas\CorsoForm;
