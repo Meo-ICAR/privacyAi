@@ -37,6 +37,7 @@ return new class extends Migration {
                 ->comment('Ruolo fornitore per definizione profilo di rischio');
             $table->comment('Censimento degli asset software e verifica locazione dati Extra-UE');
             $table->foreignUlid('mandante_id')->constrained('mandanti');
+            $table->foreignUlid('aziendatipo_id')->nullable()->constrained('aziendatipo')->nullOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });;

@@ -58,6 +58,12 @@ class FornitoriForm
                     ->searchable()
                     ->preload()
                     ->helperText('Ruolo fornitore per definizione profilo di rischio'),
+                Select::make('aziendatipo_id')
+                    ->relationship('aziendaTipo', 'name')
+                    ->nullable()
+                    ->searchable()
+                    ->preload()
+                    ->helperText('Tipologia di azienda'),
             ]);
     }
 }

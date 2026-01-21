@@ -25,6 +25,7 @@ return new class extends Migration {
                 ->constrained('holdings')
                 ->nullOnDelete()
                 ->comment('Riferimento alla Holding di appartenenza');
+            $table->foreignUlid('aziendatipo_id')->nullable()->constrained('aziendatipo')->nullOnDelete();
             $table->timestamps();
             $table->softDeletes();
 

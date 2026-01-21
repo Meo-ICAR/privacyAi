@@ -44,6 +44,12 @@ class MandantiForm
                     ->searchable()
                     ->preload()
                     ->helperText('Riferimento alla Holding di appartenenza'),
+                Select::make('aziendatipo_id')
+                    ->relationship('aziendaTipo', 'name')
+                    ->nullable()
+                    ->searchable()
+                    ->preload()
+                    ->helperText('Tipologia di azienda'),
                 Toggle::make('is_active')
                     ->default(true)
                     ->helperText('Stato di validità del contratto/tenant'),

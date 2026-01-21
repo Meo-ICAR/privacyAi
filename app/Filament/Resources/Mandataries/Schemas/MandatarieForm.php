@@ -46,6 +46,12 @@ class MandatarieForm
                     ->email()
                     ->maxLength(255)
                     ->helperText('Contatto primario per comunicazioni privacy'),
+                Select::make('aziendatipo_id')
+                    ->relationship('aziendaTipo', 'name')
+                    ->nullable()
+                    ->searchable()
+                    ->preload()
+                    ->helperText('Tipologia di azienda'),
             ]);
     }
 }

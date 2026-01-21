@@ -22,6 +22,7 @@ class Mandatarie extends Model implements HasMedia
         'data_ricezione_nomina',
         'titolare_trattamento',
         'email_referente',
+        'aziendatipo_id',
     ];
 
     protected $casts = [
@@ -54,5 +55,13 @@ class Mandatarie extends Model implements HasMedia
     public function auditRequests()
     {
         return $this->hasMany(AuditRequest::class, 'mandataria_id');
+    }
+
+    /**
+     * Relazione many-to-one con AziendaTipo
+     */
+    public function aziendaTipo()
+    {
+        return $this->belongsTo(AziendaTipo::class, 'aziendatipo_id');
     }
 }

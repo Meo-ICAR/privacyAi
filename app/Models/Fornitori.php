@@ -14,7 +14,7 @@ class Fornitori extends Model implements HasMedia
     protected $table = 'fornitori';
 
     protected $fillable = [
-        'ragione_sociale',
+        'ragione_sociale',database/migrations
         'p_iva',
         'website',
         'responsabile_trattamento',
@@ -22,6 +22,7 @@ class Fornitori extends Model implements HasMedia
         'email_referente',
         'note_compliance',
         'mandante_id',
+        'aziendatipo_id',
     ];
 
     protected $casts = [
@@ -34,5 +35,13 @@ class Fornitori extends Model implements HasMedia
     public function mandante()
     {
         return $this->belongsTo(Mandante::class);
+    }
+
+    /**
+     * Relazione many-to-one con AziendaTipo
+     */
+    public function aziendaTipo()
+    {
+        return $this->belongsTo(AziendaTipo::class, 'aziendatipo_id');
     }
 }

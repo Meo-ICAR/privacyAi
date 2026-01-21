@@ -27,6 +27,7 @@ class Mandante extends Model implements HasMedia, HasName
         'email_referente',
         'is_active',
         'website',
+        'aziendatipo_id',
     ];
 
     protected $casts = [];
@@ -61,5 +62,13 @@ class Mandante extends Model implements HasMedia, HasName
     public function sitiWeb(): HasMany
     {
         return $this->hasMany(SitiWeb::class);
+    }
+
+    /**
+     * Relazione many-to-one con AziendaTipo
+     */
+    public function aziendaTipo()
+    {
+        return $this->belongsTo(AziendaTipo::class, 'aziendatipo_id');
     }
 }
