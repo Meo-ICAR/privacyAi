@@ -31,6 +31,8 @@ class DatabaseSeeder extends Seeder
             AziendaTipoSeeder::class,
             ServiziDpoSeeder::class,
             DpoAnagraficaSeeder::class,
+            BasiGiuridicheSeeder::class,
+
         ]);
 
         // 2. Architettura Multi-Tenant e Dati di Esempio
@@ -75,6 +77,7 @@ class DatabaseSeeder extends Seeder
             FormazioneDipendentiSeeder::class,
             CanaleEmailSeeder::class,
             SitiWebSeeder::class,
+            RolesAndUsersSeeder::class,
         ]);
     }
 }
