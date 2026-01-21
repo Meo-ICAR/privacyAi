@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Mandante;
 use App\Models\Role;
 use App\Models\User;
-use App\Models\Mandante
 use Illuminate\Database\Seeder;
 
 class RolesAndUsersSeeder extends Seeder
