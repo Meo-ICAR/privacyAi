@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('basi_giuridiche', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id')->primary();
+            $table->string('nome');
+            $table->string('codice')->unique();
+            $table->text('descrizione');
+            $table->string('riferimento_normativo')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

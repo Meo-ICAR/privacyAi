@@ -13,7 +13,15 @@ class BasiGiuridiche extends Model implements HasMedia
 
     protected $table = 'basi_giuridiche';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'nome',
+        'codice',
+        'descrizione',
+        'riferimento_normativo',
+        'is_active',
+    ];
 
-    protected $casts = [];
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
 }

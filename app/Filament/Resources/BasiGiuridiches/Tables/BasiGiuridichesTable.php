@@ -6,6 +6,8 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class BasiGiuridichesTable
@@ -14,7 +16,22 @@ class BasiGiuridichesTable
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('nome')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('codice')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('riferimento_normativo')
+                    ->searchable(),
+                IconColumn::make('is_active')
+                    ->boolean()
+                    ->sortable()
+                    ->label('Attiva'),
+                TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
