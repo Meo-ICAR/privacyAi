@@ -29,8 +29,8 @@ class CanaliEmail extends Model implements HasMedia
     /**
      * Relazione many-to-one con Email provider
      */
-    public function email_provider()
+    public function emailProvider()
     {
-        return $this->belongsTo(EmailProvider::class);
+        return $this->belongsTo(EmailProvider::class, 'email_provider_id');
     }
 }

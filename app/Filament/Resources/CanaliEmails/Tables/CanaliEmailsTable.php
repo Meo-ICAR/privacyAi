@@ -24,7 +24,7 @@ class CanaliEmailsTable
                     ->label('Email')
                     ->searchable()
                     ->copyable(),
-                TextColumn::make('emailProvider.name')
+                TextColumn::make('emailProvider.display_name')
                     ->label('Provider')
                     ->badge(),
                 TextColumn::make('last_sync_at')

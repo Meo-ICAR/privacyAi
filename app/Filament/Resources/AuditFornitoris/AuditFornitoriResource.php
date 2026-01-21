@@ -20,6 +20,8 @@ class AuditFornitoriResource extends Resource
 {
     protected static ?string $model = AuditFornitori::class;
 
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-clipboard-document-check';
 
     protected static string|\UnitEnum|null $navigationGroup = 'Audit';

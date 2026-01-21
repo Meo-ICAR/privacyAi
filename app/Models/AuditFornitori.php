@@ -26,7 +26,7 @@ class AuditFornitori extends Model implements HasMedia
     ];
 
     protected $casts = [
-        'data_esecuzione' => 'array',
+        'data_esecuzione' => 'date',
     ];
 
 

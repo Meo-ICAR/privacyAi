@@ -24,6 +24,7 @@ class Fornitori extends Model implements HasMedia
         'note_compliance',
         'mandante_id',
         'aziendatipo_id',
+        'mansione_id',
     ];
 
     protected $casts = [
@@ -32,10 +33,26 @@ class Fornitori extends Model implements HasMedia
 
 
     /**
+     * Relazione many-to-one con Mansione
+     */
+    public function mansione()
+    {
+        return $this->belongsTo(Mansioni::class);
+    }
+
+    /**
      * Relazione many-to-one con AziendaTipo
      */
     public function aziendaTipo()
     {
         return $this->belongsTo(AziendaTipo::class, 'aziendatipo_id');
+    }
+
+    /**
+     * Relazione one-to-many con AuditFornitori
+     */
+    public function audits()
+    {
+        return $this->hasMany(AuditFornitori::class, 'fornitore_id');
     }
 }

@@ -14,7 +14,7 @@ class CanaliEmailForm
         return $schema
             ->components([
                 Select::make('email_provider_id')
-                    ->relationship('emailProvider', 'nome') // Assuming 'nome' exists in email_providers
+                    ->relationship('emailProvider', 'display_name')
                     ->required()
                     ->searchable(),
                 TextInput::make('label')

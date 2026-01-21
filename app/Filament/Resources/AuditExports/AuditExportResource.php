@@ -20,6 +20,8 @@ class AuditExportResource extends Resource
 {
     protected static ?string $model = AuditExport::class;
 
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-arrow-down-tray';
 
     protected static string|\UnitEnum|null $navigationGroup = 'Audit';

@@ -6,6 +6,8 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Tables\Actions\BulkAction;
+use App\Models\AuditFornitori;
 use Filament\Tables\Table;
 
 use Filament\Tables\Columns\TextColumn;
@@ -45,6 +47,26 @@ class FornitorisTable
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    BulkAction::make('audit')
+                        ->label('AUDIT')
+                        ->icon('heroicon-o-clipboard-document-check')
+                        ->color('warning')
+                        ->requiresConfirmation()
+                        ->action(function (\Illuminate\Database\Eloquent\Collection $records): void {
+                            foreach ($records as $record) {
+                                AuditFornitori::updateOrCreate(
+                                    [
+                                        'fornitore_id' => $record->id,
+                                        'anno_riferimento' => now()->year,
+                                    ],
+                                    [
+                                        'mandante_id' => $record->mandante_id,
+                                        'stato' => 'Pianificato',
+                                    ]
+                                );
+                            }
+                        })
+                        ->deselectRecordsAfterCompletion(),
                 ]),
             ]);
     }

@@ -3,9 +3,13 @@
 namespace App\Filament\Resources\Dipendentis\Tables;
 
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\BulkAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Forms\Components\Select;
+use App\Models\Mandatarie;
+use App\Models\Corso;
 use Filament\Tables\Table;
 
 use Filament\Tables\Columns\IconColumn;
@@ -44,6 +48,41 @@ class DipendentisTable
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
+                    BulkAction::make('abbina')
+                        ->label('ABBINA')
+                        ->icon('heroicon-o-link')
+                        ->form([
+                            Select::make('mandataria_id')
+                                ->label('Mandataria')
+                                ->options(Mandatarie::pluck('ragione_sociale', 'id'))
+                                ->required()
+                                ->searchable(),
+                        ])
+                        ->action(function (\Illuminate\Database\Eloquent\Collection $records, array $data): void {
+                            foreach ($records as $record) {
+                                $record->mandatarie()->attach($data['mandataria_id'], [
+                                    'data_autorizzazione' => now(),
+                                    'is_active' => true,
+                                ]);
+                            }
+                        })
+                        ->deselectRecordsAfterCompletion(),
+                    BulkAction::make('formazione')
+                        ->label('FORMAZIONE')
+                        ->icon('heroicon-o-academic-cap')
+                        ->form([
+                            Select::make('corso_id')
+                                ->label('Corso')
+                                ->options(Corso::pluck('titolo', 'id'))
+                                ->required()
+                                ->searchable(),
+                        ])
+                        ->action(function (\Illuminate\Database\Eloquent\Collection $records, array $data): void {
+                            foreach ($records as $record) {
+                                $record->corsi()->attach($data['corso_id']);
+                            }
+                        })
+                        ->deselectRecordsAfterCompletion(),
                 ]),
             ]);
     }
