@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\BelongsToMandante;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -9,7 +10,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class SitiWeb extends Model implements HasMedia
 {
-    use HasUlids, InteractsWithMedia;
+    use HasUlids, InteractsWithMedia, BelongsToMandante;
 
     protected $table = 'siti_web';
 
@@ -26,8 +27,4 @@ class SitiWeb extends Model implements HasMedia
 
     protected $casts = [];
 
-    public function mandante()
-    {
-        return $this->belongsTo(Mandante::class);
-    }
 }

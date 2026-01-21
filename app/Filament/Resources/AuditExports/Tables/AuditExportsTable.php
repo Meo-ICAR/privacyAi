@@ -15,9 +15,6 @@ class AuditExportsTable
     {
         return $table
             ->columns([
-                TextColumn::make('id')
-                    ->label('ID')
-                    ->searchable(),
                 TextColumn::make('tipo_report')
                     ->searchable(),
                 TextColumn::make('generato_il')
@@ -31,11 +28,7 @@ class AuditExportsTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('mandante_id')
-                    ->searchable(),
                 TextColumn::make('user_id')
-                    ->searchable(),
-                TextColumn::make('mandataria_id')
                     ->searchable(),
             ])
             ->filters([

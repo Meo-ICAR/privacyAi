@@ -13,16 +13,6 @@ class AuditRequestForm
     {
         return $schema
             ->components([
-                Select::make('mandante_id')
-                    ->relationship('mandante', 'ragione_sociale')
-                    ->required()
-                    ->searchable()
-                    ->preload(),
-                Select::make('mandataria_id')
-                    ->relationship('mandataria', 'ragione_sociale')
-                    ->required()
-                    ->searchable()
-                    ->preload(),
                 TextInput::make('titolo')
                     ->required(),
                 DatePicker::make('data_inizio')

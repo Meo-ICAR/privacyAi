@@ -33,9 +33,6 @@ class FornitorisTable
                     }),
                 TextColumn::make('mansione.nome')
                     ->label('Ruolo'),
-                TextColumn::make('mandante.ragione_sociale')
-                    ->label('Mandante')
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

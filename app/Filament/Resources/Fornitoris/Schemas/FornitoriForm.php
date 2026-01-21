@@ -15,10 +15,6 @@ class FornitoriForm
     {
         return $schema
             ->components([
-                Select::make('mandante_id')
-                    ->relationship('mandante', 'ragione_sociale')
-                    ->required()
-                    ->searchable(),
                 TextInput::make('ragione_sociale')
                     ->required()
                     ->maxLength(255)

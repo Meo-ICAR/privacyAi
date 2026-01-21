@@ -16,9 +16,6 @@ class CorsoTemplatesTable
     {
         return $table
             ->columns([
-                TextColumn::make('id')
-                    ->label('ID')
-                    ->searchable(),
                 TextColumn::make('titolo')
                     ->searchable()
                     ->sortable()

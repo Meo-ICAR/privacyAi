@@ -12,10 +12,7 @@ class DipendenteMandatariaInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('id')
-                    ->label('ID'),
                 TextEntry::make('dipendente_id'),
-                TextEntry::make('mandataria_id'),
                 TextEntry::make('data_autorizzazione')
                     ->date(),
                 IconEntry::make('is_active')

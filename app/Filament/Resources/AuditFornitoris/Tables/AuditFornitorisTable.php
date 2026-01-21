@@ -16,13 +16,6 @@ class AuditFornitorisTable
     {
         return $table
             ->columns([
-                TextColumn::make('mandante.ragione_sociale')
-                    ->label('Mandante')
-                    ->sortable(),
-                TextColumn::make('fornitore.ragione_sociale')
-                    ->label('Fornitore')
-                    ->sortable()
-                    ->searchable(),
                 TextColumn::make('anno_riferimento')
                     ->sortable(),
                 TextColumn::make('stato')

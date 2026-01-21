@@ -11,8 +11,6 @@ class AuditExportInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('id')
-                    ->label('ID'),
                 TextEntry::make('tipo_report'),
                 TextEntry::make('generato_il')
                     ->dateTime(),
@@ -22,9 +20,7 @@ class AuditExportInfolist
                 TextEntry::make('updated_at')
                     ->dateTime()
                     ->placeholder('-'),
-                TextEntry::make('mandante_id'),
                 TextEntry::make('user_id'),
-                TextEntry::make('mandataria_id'),
             ]);
     }
 }

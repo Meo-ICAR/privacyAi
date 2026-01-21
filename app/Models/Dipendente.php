@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\BelongsToMandante;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Dipendente extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, BelongsToMandante;
 
     protected $table = 'dipendenti';
 
@@ -20,11 +21,4 @@ class Dipendente extends Model
         'mandante_id'
     ];
 
-    /**
-     * Relazione many-to-one con Mandante
-     */
-    public function mandante(): BelongsTo
-    {
-        return $this->belongsTo(Mandante::class);
-    }
 }

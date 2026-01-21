@@ -15,10 +15,6 @@ class RegistroTrattamentiForm
     {
         return $schema
             ->components([
-                Select::make('mandante_id')
-                    ->relationship('mandante', 'ragione_sociale')
-                    ->required()
-                    ->searchable(),
                 TextInput::make('versione')
                     ->required()
                     ->maxLength(255)

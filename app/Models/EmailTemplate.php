@@ -11,7 +11,7 @@ class EmailTemplate extends Model implements HasMedia
 {
     use HasUlids, InteractsWithMedia;
 
-    protected $table = 'email_template';
+    protected $table = 'email_templates';
 
     protected $fillable = [
         'slug',

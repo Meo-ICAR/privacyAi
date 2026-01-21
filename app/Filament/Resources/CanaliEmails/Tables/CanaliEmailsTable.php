@@ -24,9 +24,6 @@ class CanaliEmailsTable
                     ->label('Email')
                     ->searchable()
                     ->copyable(),
-                TextColumn::make('mandante.ragione_sociale')
-                    ->label('Mandante')
-                    ->sortable(),
                 TextColumn::make('emailProvider.name')
                     ->label('Provider')
                     ->badge(),

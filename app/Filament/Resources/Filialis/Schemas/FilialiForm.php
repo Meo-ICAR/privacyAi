@@ -13,11 +13,6 @@ class FilialiForm
     {
         return $schema
             ->components([
-                Select::make('mandante_id')
-                    ->relationship('mandante', 'ragione_sociale')
-                    ->required()
-                    ->searchable()
-                    ->helperText('Tenant di appartenenza'),
                 TextInput::make('nome')
                     ->required()
                     ->maxLength(255)

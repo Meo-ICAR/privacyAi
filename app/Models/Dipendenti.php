@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\BelongsToMandante;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -9,7 +10,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Dipendenti extends Model implements HasMedia
 {
-    use HasUlids, InteractsWithMedia;
+    use HasUlids, InteractsWithMedia, BelongsToMandante;
 
     protected $table = 'dipendenti';
 
@@ -28,17 +29,10 @@ class Dipendenti extends Model implements HasMedia
     ];
 
     protected $casts = [
-        'data_assunzione' => 'array',
-        'data_dimissioni' => 'array',
+        'data_assunzione' => 'date',
+        'data_dimissioni' => 'date',
     ];
 
-    /**
-     * Relazione many-to-one con Mandante
-     */
-    public function mandante()
-    {
-        return $this->belongsTo(Mandante::class);
-    }
 
     /**
      * Relazione many-to-one con Mandante

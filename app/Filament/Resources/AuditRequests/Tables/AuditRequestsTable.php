@@ -15,16 +15,6 @@ class AuditRequestsTable
     {
         return $table
             ->columns([
-                TextColumn::make('id')
-                    ->label('ID')
-                    ->searchable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('mandante.ragione_sociale')
-                    ->label('Mandante')
-                    ->sortable(),
-                TextColumn::make('mandataria.ragione_sociale')
-                    ->label('Mandataria')
-                    ->searchable(),
                 TextColumn::make('titolo')
                     ->searchable()
                     ->sortable()

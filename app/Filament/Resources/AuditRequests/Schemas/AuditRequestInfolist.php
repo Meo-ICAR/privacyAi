@@ -11,10 +11,6 @@ class AuditRequestInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('id')
-                    ->label('ID'),
-                TextEntry::make('mandante_id'),
-                TextEntry::make('mandataria_id'),
                 TextEntry::make('titolo'),
                 TextEntry::make('data_inizio')
                     ->date(),

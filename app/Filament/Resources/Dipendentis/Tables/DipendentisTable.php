@@ -28,14 +28,8 @@ class DipendentisTable
                 TextColumn::make('mansione.nome')
                     ->label('Mansione')
                     ->sortable(),
-                TextColumn::make('mandante.ragione_sociale')
-                    ->label('Mandante')
-                    ->sortable(),
                 TextColumn::make('filiale.nome')
                     ->label('Filiale')
-                    ->sortable(),
-                TextColumn::make('fornitore.ragione_sociale')
-                    ->label('Fornitore')
                     ->sortable(),
                 IconColumn::make('is_active')
                     ->boolean(),

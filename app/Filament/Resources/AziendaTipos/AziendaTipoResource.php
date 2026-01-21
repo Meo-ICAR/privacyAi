@@ -15,9 +15,11 @@ class AziendaTipoResource extends Resource
 {
     protected static ?string $model = AziendaTipo::class;
 
+    protected static bool $isScopedToTenant = false;
+
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-tag';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Anagrafiche';
+    protected static string|\UnitEnum|null $navigationGroup = 'Settings';
 
     protected static ?string $recordTitleAttribute = 'name';
 

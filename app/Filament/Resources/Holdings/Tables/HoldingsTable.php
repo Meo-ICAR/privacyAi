@@ -15,9 +15,6 @@ class HoldingsTable
     {
         return $table
             ->columns([
-                TextColumn::make('id')
-                    ->label('ID')
-                    ->searchable(),
                 TextColumn::make('ragione_sociale')
                     ->searchable()
                     ->sortable()

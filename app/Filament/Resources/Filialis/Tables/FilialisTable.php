@@ -22,9 +22,6 @@ class FilialisTable
                 TextColumn::make('citta')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('mandante.ragione_sociale')
-                    ->label('Mandante')
-                    ->sortable(),
                 TextColumn::make('codice_sede')
                     ->searchable(),
             ])

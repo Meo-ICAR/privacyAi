@@ -28,23 +28,23 @@ class DatabaseSeeder extends Seeder
             DocumentoTipoSeeder::class,
             MisuraSicurezzaSeeder::class,
             MansioneSeeder::class,  // Catalogo ruoli e rischi privacy
+            AziendaTipoSeeder::class,
+            ServiziDpoSeeder::class,
+            DpoAnagraficaSeeder::class,
         ]);
 
-        // 2. Creazione del Super-Admin e Tenant di Default
+        // 2. Architettura Multi-Tenant e Dati di Esempio
+
+        $this->call([
+            HoldingSeeder::class,
+            MandanteSeeder::class,
+        ]);
 
         // 2a. Assicuriamoci che esista il ruolo super_admin
         $role = Role::firstOrCreate(['name' => 'super_admin', 'guard_name' => 'web']);
 
-        // 2b. Creiamo un Tenant di default (necessario per Filament)
-        $mandante = Mandante::firstOrCreate(
-            ['p_iva' => '00000000000'],
-            [
-                'ragione_sociale' => 'PrivacyCall S.r.l.',
-                'titolare_trattamento' => 'Mario Rossi',
-                'email_referente' => 'admin@privacycall.it',
-                'is_active' => true,
-            ]
-        );
+        // 2b. Recuperiamo o creiamo un mandante di riferimento
+        $mandante = Mandante::where('p_iva', '00000000000')->first() ?? Mandante::first();
 
         // 2c. Creiamo o aggiorniamo l'utente Admin
         $user = User::firstOrCreate(
@@ -66,18 +66,15 @@ class DatabaseSeeder extends Seeder
             $user->assignRole($role);
         }
 
-        // 3. Esempio di Struttura Tenant (Dati di Test)
-        // Se hai creato i seeder specifici, scommentali qui sotto.
-        // L'ordine è: Mandante -> Filiali/Mandatarie -> Dipendenti -> Formazione
-
-        /*
-         * $this->call([
-         *     MandanteSeeder::class,
-         *     FilialeSeeder::class,
-         *     MandatariaSeeder::class,
-         *     DipendenteSeeder::class,
-         *     CanaleEmailSeeder::class,
-         * ]);
-         */
+        // 3. Dati Operativi Tenant-Scoped (Dati di Test)
+        $this->call([
+            FilialiSeeder::class,
+            MandatariaSeeder::class,
+            FornitoriSeeder::class,
+            DipendentiSeeder::class,
+            FormazioneDipendentiSeeder::class,
+            CanaleEmailSeeder::class,
+            SitiWebSeeder::class,
+        ]);
     }
 }

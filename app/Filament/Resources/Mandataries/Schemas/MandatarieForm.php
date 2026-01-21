@@ -14,11 +14,6 @@ class MandatarieForm
     {
         return $schema
             ->components([
-                Select::make('mandante_id')
-                    ->relationship('mandante', 'ragione_sociale')
-                    ->required()
-                    ->searchable()
-                    ->helperText('Il tenant (Mandante) censisce i propri clienti (Mandatarie)'),
                 TextInput::make('ragione_sociale')
                     ->required()
                     ->maxLength(255)

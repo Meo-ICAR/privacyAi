@@ -12,8 +12,6 @@ class HoldingInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('id')
-                    ->label('ID'),
                 TextEntry::make('ragione_sociale'),
                 TextEntry::make('p_iva'),
                 TextEntry::make('codice_gruppo')

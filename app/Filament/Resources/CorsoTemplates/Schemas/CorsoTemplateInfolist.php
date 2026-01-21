@@ -12,8 +12,6 @@ class CorsoTemplateInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('id')
-                    ->label('ID'),
                 TextEntry::make('titolo'),
                 TextEntry::make('descrizione')
                     ->placeholder('-')

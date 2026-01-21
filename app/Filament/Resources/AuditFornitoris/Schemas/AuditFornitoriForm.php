@@ -15,14 +15,6 @@ class AuditFornitoriForm
     {
         return $schema
             ->components([
-                Select::make('mandante_id')
-                    ->relationship('mandante', 'ragione_sociale')
-                    ->required()
-                    ->searchable(),
-                Select::make('fornitore_id')
-                    ->relationship('fornitore', 'ragione_sociale')
-                    ->required()
-                    ->searchable(),
                 TextInput::make('anno_riferimento')
                     ->numeric()
                     ->required(),

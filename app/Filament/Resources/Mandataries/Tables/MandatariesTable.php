@@ -21,9 +21,6 @@ class MandatariesTable
                     ->searchable()
                     ->sortable()
                     ->description(fn ($record) => $record->p_iva),
-                TextColumn::make('mandante.ragione_sociale')
-                    ->label('Mandante')
-                    ->sortable(),
                 TextColumn::make('titolare_trattamento')
                     ->searchable(),
                 TextColumn::make('data_ricezione_nomina')

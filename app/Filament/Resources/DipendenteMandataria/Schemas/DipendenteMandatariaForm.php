@@ -35,11 +35,6 @@ class DipendenteMandatariaForm
                     ->required()
                     ->searchable()
                     ->preload(),
-                Select::make('mandataria_id')
-                    ->relationship('mandataria', 'ragione_sociale')
-                    ->required()
-                    ->searchable()
-                    ->preload(),
                 Select::make('mansione_id')
                     ->relationship('mansione', 'nome')
                     ->required()

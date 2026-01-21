@@ -15,9 +15,6 @@ class EmailTemplatesTable
     {
         return $table
             ->columns([
-                TextColumn::make('id')
-                    ->label('ID')
-                    ->searchable(),
                 TextColumn::make('slug')
                     ->searchable()
                     ->sortable(),

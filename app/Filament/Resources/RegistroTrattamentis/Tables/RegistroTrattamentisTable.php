@@ -22,9 +22,6 @@ class RegistroTrattamentisTable
                 TextColumn::make('data_aggiornamento')
                     ->dateTime()
                     ->sortable(),
-                TextColumn::make('mandante.ragione_sociale')
-                    ->label('Mandante')
-                    ->sortable(),
                 TextColumn::make('user.name')
                     ->label('Autore')
                     ->sortable(),

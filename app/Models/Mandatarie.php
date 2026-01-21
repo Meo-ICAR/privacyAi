@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\BelongsToMandante;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -9,7 +10,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Mandatarie extends Model implements HasMedia
 {
-    use HasUlids, InteractsWithMedia;
+    use HasUlids, InteractsWithMedia, BelongsToMandante;
 
     protected $table = 'mandatarie';
 
@@ -29,14 +30,6 @@ class Mandatarie extends Model implements HasMedia
         'data_ricezione_nomina' => 'date',
     ];
 
-    /**
-     * Relazione many-to-one con Mandante
-     * Una Mandataria appartiene a un Mandante
-     */
-    public function mandante()
-    {
-        return $this->belongsTo(Mandante::class);
-    }
 
     /**
      * Relazione many-to-many con Dipendenti

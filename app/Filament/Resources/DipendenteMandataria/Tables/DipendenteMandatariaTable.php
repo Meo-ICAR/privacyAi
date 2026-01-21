@@ -16,12 +16,7 @@ class DipendenteMandatariaTable
     {
         return $table
             ->columns([
-                TextColumn::make('id')
-                    ->label('ID')
-                    ->searchable(),
                 TextColumn::make('dipendente_id')
-                    ->searchable(),
-                TextColumn::make('mandataria_id')
                     ->searchable(),
                 TextColumn::make('data_autorizzazione')
                     ->date()

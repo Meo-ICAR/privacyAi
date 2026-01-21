@@ -64,7 +64,7 @@ return new class extends Migration
             $table->comment('Anagrafica dipendenti del Responsabile (Mandante) con tracciamento sede e protezione PII');
 
 
-            $table->foreignUlid('fornitore_id')->constrained('fornitori')->cascadeOnDelete();
+            $table->foreignUlid('fornitore_id')->nullable()->constrained('fornitori')->cascadeOnDelete();
         });
     }
 

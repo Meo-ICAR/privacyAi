@@ -13,10 +13,6 @@ class CanaliEmailForm
     {
         return $schema
             ->components([
-                Select::make('mandante_id')
-                    ->relationship('mandante', 'ragione_sociale')
-                    ->required()
-                    ->searchable(),
                 Select::make('email_provider_id')
                     ->relationship('emailProvider', 'nome') // Assuming 'nome' exists in email_providers
                     ->required()

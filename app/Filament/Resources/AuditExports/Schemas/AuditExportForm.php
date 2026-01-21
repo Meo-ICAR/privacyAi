@@ -16,11 +16,7 @@ class AuditExportForm
                     ->required(),
                 DateTimePicker::make('generato_il')
                     ->required(),
-                TextInput::make('mandante_id')
-                    ->required(),
                 TextInput::make('user_id')
-                    ->required(),
-                TextInput::make('mandataria_id')
                     ->required(),
             ]);
     }

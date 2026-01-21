@@ -11,7 +11,7 @@ class CorsoTemplate extends Model implements HasMedia
 {
     use HasUlids, InteractsWithMedia;
 
-    protected $table = 'corsi_template';
+    protected $table = 'corso_templates';
 
     protected $fillable = [
         'titolo',

@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->text('password')->comment('Criptata tramite Laravel Encrypter');
 
             $table->timestamp('last_sync_at')->nullable();
+            $table->timestamps();
 
             $table->comment("Credenziali e parametri per l'ingestion automatica delle email privacy");
         });

@@ -11,8 +11,6 @@ class EmailTemplateInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('id')
-                    ->label('ID'),
                 TextEntry::make('slug'),
                 TextEntry::make('oggetto'),
                 TextEntry::make('corpo_markdown')

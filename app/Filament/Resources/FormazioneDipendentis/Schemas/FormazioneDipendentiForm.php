@@ -14,10 +14,6 @@ class FormazioneDipendentiForm
     {
         return $schema
             ->components([
-                Select::make('mandante_id')
-                    ->relationship('mandante', 'ragione_sociale')
-                    ->required()
-                    ->searchable(),
                 Select::make('dipendente_id')
                     ->relationship('dipendente', 'cognome')
                     ->required()
