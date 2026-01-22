@@ -3,6 +3,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -26,14 +27,14 @@ class Holding extends Model implements HasMedia
     protected static function booted()
     {
         static::addGlobalScope('tenant', function (Builder $builder) {
-            // Se l'utente è un super admin e sta impersonando un altro utente
+            // If the user is a super admin and is impersonating another user
             if (auth()->user()?->hasRole('super_admin') && session()->has('impersonated_by')) {
-                // Mostra le holdings del mandante impersonato
+                // Show holdings of the impersonated tenant
                 $builder->whereHas('mandante', function ($query) {
                     $query->where('mandante_id', auth()->user()->mandante_id);
                 });
             }
-            // Altrimenti, applica il normale filtro per mandante
+            // Otherwise, apply the normal tenant filter
             elseif (auth()->check() && $tenantId = auth()->user()->mandante_id) {
                 $builder->whereHas('mandante', function ($query) use ($tenantId) {
                     $query->where('mandante_id', $tenantId);
