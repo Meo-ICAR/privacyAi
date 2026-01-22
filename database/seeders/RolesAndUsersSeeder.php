@@ -27,7 +27,7 @@ class RolesAndUsersSeeder extends Seeder
         foreach ($roles as $name => $label) {
             Role::create([
                 'name' => $name,
-                'label' => $label,
+                'guard_name' => 'web',
             ]);
         }
 
@@ -37,10 +37,10 @@ class RolesAndUsersSeeder extends Seeder
         foreach ($tenants as $tenant) {
             $user = User::firstOrCreate(
                 [
-                    'email' => 'admin@'.$tenant->domain,
+                    'email' => 'admin@' . $tenant->domain,
                 ],
                 [
-                    'name' => 'Admin '.$tenant->name,
+                    'name' => 'Admin ' . $tenant->name,
                     'password' => bcrypt('password'),
                     'tenant_id' => $tenant->id,
                 ]
