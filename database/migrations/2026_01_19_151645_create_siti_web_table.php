@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('siti_web', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->foreignUlid('mandante_id')->constrained('mandanti')->cascadeOnDelete();
-            $table->string('url')->comment('URL completo del sito');
+            $table->string('url')->nullable()->comment('URL completo del sito');
             $table->string('nome_progetto')->nullable()->comment('Es: E-commerce, Blog, Portale Agenti');
             $table->enum('tipo', ['istituzionale', 'ecommerce', 'landing_page', 'app_web'])->default('istituzionale');
             $table->text('descrizione_trattamenti')->nullable()->comment('Quali dati vengono raccolti su questo sito?');
