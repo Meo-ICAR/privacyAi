@@ -25,10 +25,26 @@ class Mandatarie extends Model implements HasMedia
         'titolare_trattamento',
         'email_referente',
         'aziendatipo_id',
+        'categorie_dati',
+        'descrizione_categorie_dati',
+        'categorie_interessati',
+        'finalita_trattamento',
+        'tipo_trattamento',
+        'termini_conservazione',
+        'paesi_trasferimento_dati',
+        'misure_sicurezza_tecniche',
+        'misure_sicurezza_organizzative',
+        'responsabili_esterni',
+        'base_giuridica',
+        'richiesto_consenso',
+        'modalita_raccolta_consenso',
+        'contitolare_trattamento',
+        'note_gdpr',
     ];
 
     protected $casts = [
         'data_ricezione_nomina' => 'date',
+        'richiesto_consenso' => 'boolean',
     ];
 
     /**
@@ -62,5 +78,13 @@ class Mandatarie extends Model implements HasMedia
     public function aziendaTipo()
     {
         return $this->belongsTo(AziendaTipo::class, 'aziendatipo_id');
+    }
+
+    public function fornitori()
+    {
+        return $this
+            ->belongsToMany(Fornitore::class, 'fornitore_mandataria')
+            ->withPivot(['data_invio_accettazione', 'data_accettazione', 'esito', 'annotazioni'])
+            ->withTimestamps();
     }
 }

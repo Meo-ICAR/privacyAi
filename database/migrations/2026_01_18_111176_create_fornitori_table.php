@@ -14,11 +14,11 @@ return new class extends Migration {
             $table->ulid('id')->primary();
 
             $table->string('ragione_sociale')->comment('Denominazione fornitore');
-            $table->string('p_iva', 11);
+            $table->string('p_iva', 11)->nullable();
             $table->string('website')->nullable()->comment('Sito web aziendale');
-            $table->string('responsabile_trattamento')->comment('Responsabile del Trattamento ( amministratore azienda)');
+            $table->string('responsabile_trattamento')->nullable()->comment('Responsabile del Trattamento ( amministratore azienda)');
             // Privacy Logic: La Mandataria nomina TE (Mandante)
-            $table->date('data_nomina')->comment('Data in cui abbiamo nominato il fornitore come Responsabile');
+            $table->date('data_nomina')->nullable()->comment('Data in cui abbiamo nominato il fornitore come Responsabile');
             $table->string('email_referente')->nullable()->comment('Contatto primario per comunicazioni privacy');
             $table
                 ->enum('locazione_dati', ['UE', 'USA', 'Extra-UE'])
@@ -42,6 +42,23 @@ return new class extends Migration {
                 ->nullOnDelete()
                 ->comment('Riferimento alla Holding di appartenenza');
             $table->comment('Censimento degli asset software e verifica locazione dati Extra-UE');
+            $table->string('nomina')->nullable()->comment('Tipo nomina (es. resp. esterno dati dipendenti)');
+            $table->date('data_nomina')->nullable()->comment('Data del documento di nomina');
+
+            // Attività
+            $table->text('attivita_principale')->nullable()->comment('Attività principale del fornitore');
+
+            // Date
+            $table->date('data_invio_documenti')->nullable()->comment('Data invio documenti');
+            $table->date('data_firma_contratto')->nullable()->comment('Data firma contratto');
+
+            // Cessazione
+            $table->date('data_cessazione')->nullable()->comment('Data di cessazione del rapporto');
+            $table->text('motivo_cessazione')->nullable()->comment('Motivo della cessazione');
+
+            // Note
+            $table->text('note_contrattuali')->nullable()->comment('Note aggiuntive sul contratto');
+
             $table->foreignUlid('mandante_id')->constrained('mandanti');
             $table->foreignUlid('aziendatipo_id')->nullable()->constrained('aziendatipo')->nullOnDelete();
             $table->timestamps();

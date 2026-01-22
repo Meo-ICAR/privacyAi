@@ -55,4 +55,12 @@ class Fornitori extends Model implements HasMedia
     {
         return $this->hasMany(AuditFornitori::class, 'fornitore_id');
     }
+
+    public function mandatarie()
+    {
+        return $this
+            ->belongsToMany(Mandatarie::class, 'fornitore_mandataria')
+            ->withPivot(['data_invio_accettazione', 'data_accettazione', 'esito', 'annotazioni'])
+            ->withTimestamps();
+    }
 }

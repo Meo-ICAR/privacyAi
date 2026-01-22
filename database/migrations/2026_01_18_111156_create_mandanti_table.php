@@ -36,6 +36,40 @@ return new class extends Migration {
                 ->nullOnDelete()
                 ->comment('Riferimento alla Holding di appartenenza');
             $table->foreignUlid('aziendatipo_id')->nullable()->constrained('aziendatipo')->nullOnDelete();
+
+            $table->text('categorie_dati')->nullable()->comment('Categorie di dati personali trattati');
+            $table->text('descrizione_categorie_dati')->nullable()->comment('Descrizione dettagliata delle categorie di dati');
+
+            // Interessati
+            $table->text('categorie_interessati')->nullable()->comment('Categorie di interessati (es. dipendenti, clienti, fornitori)');
+
+            // Finalità
+            $table->text('finalita_trattamento')->nullable()->comment('Finalità del trattamento dei dati');
+
+            // Modalità di trattamento
+            $table->enum('tipo_trattamento', ['manuale', 'digitale', 'misto'])->default('digitale');
+
+            // Conservazione
+            $table->text('termini_conservazione')->nullable()->comment('Termini di conservazione e cancellazione dei dati');
+
+            // Trasferimenti internazionali
+            $table->text('paesi_trasferimento_dati')->nullable()->comment('Paesi terzi o organizzazioni internazionali destinatari dei dati');
+
+            // Misure di sicurezza
+            $table->text('misure_sicurezza_tecniche')->nullable()->comment('Misure di sicurezza tecniche adottate');
+            $table->text('misure_sicurezza_organizzative')->nullable()->comment('Misure di sicurezza organizzative adottate');
+
+            // Responsabili esterni
+            $table->text('responsabili_esterni')->nullable()->comment('Elenco dei responsabili esterni al trattamento');
+
+            // Base giuridica
+            $table->text('base_giuridica')->nullable()->comment('Base giuridica del trattamento (es. consenso, obbligo contrattuale)');
+            $table->boolean('richiesto_consenso')->default(false);
+            $table->text('modalita_raccolta_consenso')->nullable()->comment('Modalità di raccolta del consenso');
+
+            // Documentazione
+            $table->text('note_gdpr')->nullable()->comment('Note aggiuntive relative al trattamento dei dati');
+
             $table->timestamps();
             $table->softDeletes();
 

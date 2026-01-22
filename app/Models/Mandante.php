@@ -106,4 +106,9 @@ class Mandante extends Model implements HasMedia, HasName
             'id'  // Local key on canali_email table
         );
     }
+
+    public function fornitoreMandatarie()
+    {
+        return $this->hasMany(FornitoreMandataria::class);
+    }
 }

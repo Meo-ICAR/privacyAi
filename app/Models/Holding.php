@@ -20,9 +20,27 @@ class Holding extends Model implements HasMedia
         'ragione_sociale',
         'p_iva',
         'codice_gruppo',
+        'categorie_dati',
+        'descrizione_categorie_dati',
+        'categorie_interessati',
+        'finalita_trattamento',
+        'tipo_trattamento',
+        'termini_conservazione',
+        'paesi_trasferimento_dati',
+        'misure_sicurezza_tecniche',
+        'misure_sicurezza_organizzative',
+        'responsabili_esterni',
+        'base_giuridica',
+        'richiesto_consenso',
+        'modalita_raccolta_consenso',
+        'contitolare_trattamento',
+        'note_gdpr',
     ];
 
-    protected $casts = [];
+    protected $casts = [
+        // ... existing casts
+        'richiesto_consenso' => 'boolean',
+    ];
 
     protected static function booted()
     {
