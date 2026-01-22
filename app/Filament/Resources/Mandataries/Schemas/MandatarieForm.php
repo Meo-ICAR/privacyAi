@@ -2,12 +2,11 @@
 
 namespace App\Filament\Resources\Mandataries\Schemas;
 
-use Filament\Schemas\Schema;
-
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Schema;
 
 class MandatarieForm
 {
@@ -48,6 +47,12 @@ class MandatarieForm
                     ->searchable()
                     ->preload()
                     ->helperText('Tipologia di azienda'),
+                Select::make('holding_id')
+                    ->relationship('holding', 'ragione_sociale')
+                    ->nullable()
+                    ->searchable()
+                    ->preload()
+                    ->helperText('Riferimento alla Holding di appartenenza'),
                 SpatieMediaLibraryFileUpload::make('documenti')
                     ->collection('documenti')
                     ->multiple()

@@ -6,9 +6,8 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
-use Filament\Tables\Table;
-
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 
 class MandatariesTable
 {
@@ -20,11 +19,14 @@ class MandatariesTable
                     ->label('Mandataria')
                     ->searchable()
                     ->sortable()
-                    ->description(fn ($record) => $record->p_iva),
+                    ->description(fn($record) => $record->p_iva),
                 TextColumn::make('titolare_trattamento')
                     ->searchable(),
                 TextColumn::make('data_ricezione_nomina')
                     ->date()
+                    ->sortable(),
+                TextColumn::make('holding.ragione_sociale')
+                    ->label('Holding')
                     ->sortable(),
             ])
             ->filters([
