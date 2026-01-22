@@ -94,18 +94,4 @@ class User extends Authenticatable implements FilamentUser, HasTenants
     {
         return true;  // Qui puoi aggiungere controlli sui ruoli (es. Spatie Permissions)
     }
-
-    public function canImpersonateTenantAdmin(): bool
-    {
-        return $this->hasRole('super_admin');
-    }
-
-    public function impersonateTenantAdmin(User $user): void
-    {
-        if (! $this->canImpersonateTenantAdmin()) {
-            throw new \Exception('You do not have permission to impersonate a tenant admin.');
-        }
-
-        $this->updateAuthSession($user);
-    }
 }
