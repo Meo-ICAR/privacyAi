@@ -46,6 +46,42 @@ class HoldingsTable
                 ]),
             ])
             ->bulkActions([
+                BulkAction::make('clone_to_mandatarie')
+                    ->label('Clona in Mandatarie')
+                    ->icon('heroicon-o-document-duplicate')
+                    ->action(function (Collection $records) {
+                        $count = 0;
+
+                        foreach ($records as $holding) {
+                            try {
+                                Mandatarie::firstOrCreate(
+                                    [
+                                        'ragione_sociale' => $holding->ragione_sociale,
+                                        'p_iva' => $holding->p_iva,
+                                        'holding_id' => $holding->id,
+                                    ],
+                                    [
+                                        'is_active' => true,
+                                        'mandante_id' => auth()->user()->mandante_id,
+                                        // Add other required fields for Mandatarie
+                                    ]
+                                );
+                                $count++;
+                            } catch (\Exception $e) {
+                                // Log error if needed
+                                \Log::error('Error cloning holding to mandatarie: ' . $e->getMessage());
+                            }
+                        }
+                        return Notification::make()
+                            ->title('Operazione completata')
+                            ->body("$count holding clonate come mandatarie con successo!")
+                            ->success()
+                            ->send();
+                    })
+                    ->requiresConfirmation()
+                    ->modalHeading('Clona Holding in Mandatarie')
+                    ->modalDescription('Sei sicuro di voler clonare le holding selezionate come mandatarie?')
+                    ->modalButton('Sì, clona'),
                 BulkAction::make('copy_to_fornitori')
                     ->label('Crea come Fornitore')
                     ->icon('heroicon-o-document-duplicate')

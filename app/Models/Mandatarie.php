@@ -19,6 +19,7 @@ class Mandatarie extends Model implements HasMedia
         'ragione_sociale',
         'p_iva',
         'website',
+        'holding_id',
         'landingpage',
         'data_ricezione_nomina',
         'titolare_trattamento',
@@ -30,16 +31,21 @@ class Mandatarie extends Model implements HasMedia
         'data_ricezione_nomina' => 'date',
     ];
 
-
     /**
      * Relazione many-to-many con Dipendenti
      */
     public function dipendenti()
     {
-        return $this->belongsToMany(Dipendenti::class, 'dipendente_mandataria', 'mandataria_id', 'dipendente_id')
+        return $this
+            ->belongsToMany(Dipendenti::class, 'dipendente_mandataria', 'mandataria_id', 'dipendente_id')
             ->using(DipendenteMandataria::class)
             ->withPivot(['mansione_id', 'data_autorizzazione', 'is_active'])
             ->withTimestamps();
+    }
+
+    public function holding()
+    {
+        return $this->belongsTo(Holding::class);
     }
 
     /**

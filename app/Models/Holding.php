@@ -80,6 +80,11 @@ class Holding extends Model implements HasMedia
         return $this->hasMany(Mandante::class);
     }
 
+    public function mandatarie()
+    {
+        return $this->hasMany(Mandatarie::class);
+    }
+
     /**
      * Relazione one-to-many con Fornitore
      */

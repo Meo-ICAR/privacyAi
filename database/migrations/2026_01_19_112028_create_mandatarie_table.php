@@ -23,7 +23,13 @@ return new class extends Migration {
             $table->date('data_ricezione_nomina')->comment('Data in cui la Mandataria ha nominato il Mandante come Responsabile');
             $table->string('titolare_trattamento')->comment('Titolare del Trattamento');
             $table->string('email_referente')->nullable()->comment('Contatto primario per comunicazioni privacy');
-               $table->foreignUlid('aziendatipo_id')->nullable()->constrained('aziendatipo')->nullOnDelete();
+            $table
+                ->foreignUlid('holding_id')
+                ->nullable()  // Nullable se un Mandante è indipendente (non appartiene a gruppi)
+                ->constrained('holdings')
+                ->nullOnDelete()
+                ->comment('Riferimento alla Holding di appartenenza');
+            $table->foreignUlid('aziendatipo_id')->nullable()->constrained('aziendatipo')->nullOnDelete();
 
             $table->timestamps();
             $table->softDeletes();
