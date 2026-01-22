@@ -47,6 +47,7 @@ class RolesAndUsersSeeder extends Seeder
                 ]
             );
             \Log::info('Processing tenant', [
+                'email' => $email,
                 'tenant_id' => $tenant->id,
                 'website' => $tenant->website ?? 'No website',
                 'ragione_sociale' => $tenant->ragione_sociale ?? 'No ragione_sociale'
