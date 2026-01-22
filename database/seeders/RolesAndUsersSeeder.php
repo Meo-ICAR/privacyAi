@@ -34,19 +34,23 @@ class RolesAndUsersSeeder extends Seeder
 
         // Create admin user for each tenant
         $tenants = Mandante::all();
-
         foreach ($tenants as $tenant) {
+            $domain = $this->extractDomain($tenant->sito_web ?? $tenant->website ?? 'example.com');
+            $email = 'admin@' . $domain;
+
             $user = User::firstOrCreate(
+                ['email' => $email],
                 [
-                    'email' => 'admin@' . $this->extractDomain($tenant->website),
-                ],
-                [
-                    'name' => 'Admin ' . $tenant->ragione_sociale,
+                    'name' => 'Admin ' . ($tenant->ragione_sociale ?? 'Admin'),
                     'password' => bcrypt('password'),
                     'mandante_id' => $tenant->id,
                 ]
             );
-
+            \Log::info('Processing tenant', [
+                'tenant_id' => $tenant->id,
+                'website' => $tenant->website ?? 'No website',
+                'ragione_sociale' => $tenant->ragione_sociale ?? 'No ragione_sociale'
+            ]);
             $user->assignRole('admin');
         }
     }
