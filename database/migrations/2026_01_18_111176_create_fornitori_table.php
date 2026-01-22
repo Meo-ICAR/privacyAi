@@ -27,8 +27,6 @@ return new class extends Migration {
             $table->text('note_compliance')->nullable()->comment('Eventuali clausole contrattuali specifiche');
 
             // Informazioni Lavorative
-
-            // Informazioni Lavorative
             $table
                 ->foreignUlid('mansione_id')
                 ->nullable()
@@ -43,7 +41,6 @@ return new class extends Migration {
                 ->comment('Riferimento alla Holding di appartenenza');
             $table->comment('Censimento degli asset software e verifica locazione dati Extra-UE');
             $table->string('nomina')->nullable()->comment('Tipo nomina (es. resp. esterno dati dipendenti)');
-            $table->date('data_nomina')->nullable()->comment('Data del documento di nomina');
 
             // Attività
             $table->text('attivita_principale')->nullable()->comment('Attività principale del fornitore');
