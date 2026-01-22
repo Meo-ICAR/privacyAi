@@ -3,9 +3,12 @@
 namespace App\Filament\Resources\Mandataries\Schemas;
 
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 
 class MandatarieForm
@@ -57,6 +60,55 @@ class MandatarieForm
                     ->collection('documenti')
                     ->multiple()
                     ->helperText('Documenti mandante/mandataria'),
+                Section::make('Trattamento Dati Personali')
+                    ->schema([
+                        Textarea::make('categorie_dati')
+                            ->label('Categorie di Dati')
+                            ->columnSpanFull(),
+                        Textarea::make('descrizione_categorie_dati')
+                            ->label('Descrizione Categorie Dati')
+                            ->columnSpanFull(),
+                        Textarea::make('categorie_interessati')
+                            ->label('Categorie di Interessati')
+                            ->columnSpanFull(),
+                        Textarea::make('finalita_trattamento')
+                            ->label('Finalità del Trattamento')
+                            ->columnSpanFull(),
+                        Select::make('tipo_trattamento')
+                            ->options([
+                                'manuale' => 'Manuale',
+                                'digitale' => 'Digitale',
+                                'misto' => 'Misto',
+                            ])
+                            ->default('digitale'),
+                        Textarea::make('termini_conservazione')
+                            ->label('Termini di Conservazione'),
+                        Textarea::make('paesi_trasferimento_dati')
+                            ->label('Trasferimenti Dati'),
+                        Textarea::make('misure_sicurezza_tecniche')
+                            ->label('Misure di Sicurezza Tecniche')
+                            ->columnSpanFull(),
+                        Textarea::make('misure_sicurezza_organizzative')
+                            ->label('Misure di Sicurezza Organizzative')
+                            ->columnSpanFull(),
+                        Textarea::make('responsabili_esterni')
+                            ->label('Responsabili Esterni'),
+                        Textarea::make('base_giuridica')
+                            ->label('Base Giuridica'),
+                        Toggle::make('richiesto_consenso')
+                            ->label('Richiesto Consenso'),
+                        Textarea::make('modalita_raccolta_consenso')
+                            ->label('Modalità Raccolta Consenso')
+                            ->visible(fn(callable $get) => $get('richiesto_consenso')),
+                        TextInput::make('contitolare_trattamento')
+                            ->label('Contitolare del Trattamento'),
+                        Textarea::make('note_gdpr')
+                            ->label('Note GDPR')
+                            ->columnSpanFull(),
+                    ])
+                    ->columns(2)
+                    ->collapsible()
+                    ->collapsed(),
             ]);
     }
 }
