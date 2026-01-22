@@ -35,6 +35,7 @@ class Mandante extends Model implements HasMedia, HasName
         'stripe_subscription_id',
         'periodicita',
         'stripe_subscription_ends_at',
+        'stripe_prezzo_mensile',
     ];
 
     protected $casts = [

@@ -33,6 +33,10 @@ class MandantisTable
                 TextColumn::make('holding.ragione_sociale')
                     ->label('Holding')
                     ->sortable(),
+                TextColumn::make('stripe_prezzo_mensile')
+                    ->label('Prezzo/Mese')
+                    ->money('EUR')
+                    ->sortable(),
                 BadgeColumn::make('periodicita')
                     ->label('Fatturazione')
                     ->formatStateUsing(fn($state) => match ($state) {

@@ -23,6 +23,11 @@ return new class extends Migration {
             $table->string('stripe_customer_id')->nullable();
             $table->string('stripe_subscription_id')->nullable();
             $table->enum('periodicita', [1, 2, 3, 6])->default(2)->comment('1=Mensile, 2=Bimestrale, 3=Trimestrale, 6=Semestrale');
+            $table
+                ->decimal('stripe_prezzo_mensile', 10, 2)
+                ->nullable()
+                ->after('stripe_subscription_ends_at')
+                ->comment('Prezzo mensile per abbonamento Stripe');
             $table->timestamp('stripe_subscription_ends_at')->nullable();
 
             $table

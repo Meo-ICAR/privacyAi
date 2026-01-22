@@ -25,12 +25,12 @@ class Fornitori extends Model implements HasMedia
         'mandante_id',
         'aziendatipo_id',
         'mansione_id',
+        'holding_id',
     ];
 
     protected $casts = [
         'data_nomina' => 'date',
     ];
-
 
     /**
      * Relazione many-to-one con Mansione

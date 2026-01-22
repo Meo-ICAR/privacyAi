@@ -50,6 +50,13 @@ class MandantiForm
                     ->searchable()
                     ->preload()
                     ->helperText('Tipologia di azienda'),
+                TextInput::make('stripe_prezzo_mensile')
+                    ->label('Prezzo Mensile (€)')
+                    ->numeric()
+                    ->step(10)
+                    //  ->required()
+                    ->default(0)
+                    ->prefix('€'),
                 // Aggiungi questi nuovi campi
                 Select::make('periodicita')
                     ->options([

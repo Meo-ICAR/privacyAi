@@ -23,6 +23,25 @@ class Holding extends Model implements HasMedia
 
     protected $casts = [];
 
+    protected static function booted()
+    {
+        static::addGlobalScope('tenant', function (Builder $builder) {
+            // Se l'utente è un super admin e sta impersonando un altro utente
+            if (auth()->user()?->hasRole('super_admin') && session()->has('impersonated_by')) {
+                // Mostra le holdings del mandante impersonato
+                $builder->whereHas('mandante', function ($query) {
+                    $query->where('mandante_id', auth()->user()->mandante_id);
+                });
+            }
+            // Altrimenti, applica il normale filtro per mandante
+            elseif (auth()->check() && $tenantId = auth()->user()->mandante_id) {
+                $builder->whereHas('mandante', function ($query) use ($tenantId) {
+                    $query->where('mandante_id', $tenantId);
+                });
+            }
+        });
+    }
+
     /**
      * Register the media collections.
      */

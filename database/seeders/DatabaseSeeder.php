@@ -32,7 +32,6 @@ class DatabaseSeeder extends Seeder
             ServiziDpoSeeder::class,
             DpoAnagraficaSeeder::class,
             BasiGiuridicheSeeder::class,
-
         ]);
 
         // 2. Architettura Multi-Tenant e Dati di Esempio
@@ -40,6 +39,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             HoldingSeeder::class,
             MandanteSeeder::class,
+            MandantiSeeder::class,
         ]);
 
         // 2a. Assicuriamoci che esista il ruolo super_admin
@@ -64,7 +64,7 @@ class DatabaseSeeder extends Seeder
             $user->save();
         }
 
-        if (! $user->hasRole('super_admin')) {
+        if (!$user->hasRole('super_admin')) {
             $user->assignRole($role);
         }
 
