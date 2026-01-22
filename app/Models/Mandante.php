@@ -30,12 +30,32 @@ class Mandante extends Model implements HasMedia, HasName
         'is_active',
         'website',
         'aziendatipo_id',
+        'holding_id',
+        'stripe_customer_id',
+        'stripe_subscription_id',
+        'periodicita',
+        'stripe_subscription_ends_at',
     ];
 
-    protected $casts = [];
+    protected $casts = [
+        'is_active' => 'boolean',
+        'stripe_subscription_ends_at' => 'datetime',
+        'periodicita' => 'integer',
+    ];
+
+    public function getPeriodicitaTestoAttribute(): string
+    {
+        return match ($this->periodicita) {
+            1 => 'Mensile',
+            2 => 'Bimestrale',
+            3 => 'Trimestrale',
+            6 => 'Semestrale',
+            default => 'Non specificato',
+        };
+    }
 
     /**
-     * Relazione many-to-one con Mandante
+     * Relazione many-to-one con Holding
      */
     public function holding()
     {

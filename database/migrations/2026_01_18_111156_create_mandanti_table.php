@@ -19,6 +19,13 @@ return new class extends Migration {
             $table->boolean('is_active')->default(true)->comment('Stato di validità del contratto/tenant');
 
             $table->string('website')->nullable()->comment('Sito web aziendale');
+
+            $table->string('stripe_customer_id')->nullable();
+            $table->string('stripe_subscription_id')->nullable();
+            $table->enum('periodicita', [1, 2, 3, 6])->default(2)->comment('1=Mensile, 2=Bimestrale, 3=Trimestrale, 6=Semestrale');
+            $table->timestamp('stripe_subscription_ends_at')->nullable();
+            $table->boolean('is_active')->default(true);
+
             $table
                 ->foreignUlid('holding_id')
                 ->nullable()  // Nullable se un Mandante è indipendente (non appartiene a gruppi)

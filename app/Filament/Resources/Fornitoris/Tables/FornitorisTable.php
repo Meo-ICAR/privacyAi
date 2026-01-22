@@ -2,15 +2,14 @@
 
 namespace App\Filament\Resources\Fornitoris\Tables;
 
+use App\Models\AuditFornitori;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Actions\BulkAction;
-use App\Models\AuditFornitori;
-use Filament\Tables\Table;
-
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 
 class FornitorisTable
 {
@@ -28,7 +27,7 @@ class FornitorisTable
                     ->limit(20),
                 TextColumn::make('locazione_dati')
                     ->badge()
-                    ->color(fn (string $state): string => match ($state) {
+                    ->color(fn(string $state): string => match ($state) {
                         'UE' => 'success',
                         'USA' => 'warning',
                         'Extra-UE' => 'danger',
@@ -36,6 +35,9 @@ class FornitorisTable
                     }),
                 TextColumn::make('mansione.nome')
                     ->label('Ruolo'),
+                TextColumn::make('holding.ragione_sociale')
+                    ->label('Holding')
+                    ->sortable(),
             ])
             ->filters([
                 //

@@ -2,13 +2,12 @@
 
 namespace App\Filament\Resources\Fornitoris\Schemas;
 
-use Filament\Schemas\Schema;
-
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Schema;
 
 class FornitoriForm
 {
@@ -47,14 +46,15 @@ class FornitoriForm
                     ->required()
                     ->default('UE')
                     ->helperText('Critico per Transfer Impact Assessment (TIA)'),
+                Select::make('holding_id')
+                    ->relationship('holding', 'ragione_sociale')
+                    ->nullable()
+                    ->searchable()
+                    ->preload()
+                    ->helperText('Riferimento alla Holding di appartenenza'),
                 Textarea::make('note_compliance')
                     ->columnSpanFull()
                     ->helperText('Eventuali clausole contrattuali specifiche'),
-                Select::make('mansione_id')
-                    ->relationship('mansione', 'nome')
-                    ->searchable()
-                    ->preload()
-                    ->helperText('Ruolo fornitore per definizione profilo di rischio'),
                 Select::make('aziendatipo_id')
                     ->relationship('aziendaTipo', 'name')
                     ->nullable()

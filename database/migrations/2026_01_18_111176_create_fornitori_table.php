@@ -35,6 +35,12 @@ return new class extends Migration {
                 ->constrained('mansioni')
                 ->nullable()
                 ->comment('Ruolo fornitore per definizione profilo di rischio');
+            $table
+                ->foreignUlid('holding_id')
+                ->nullable()  // Nullable se un Mandante è indipendente (non appartiene a gruppi)
+                ->constrained('holdings')
+                ->nullOnDelete()
+                ->comment('Riferimento alla Holding di appartenenza');
             $table->comment('Censimento degli asset software e verifica locazione dati Extra-UE');
             $table->foreignUlid('mandante_id')->constrained('mandanti');
             $table->foreignUlid('aziendatipo_id')->nullable()->constrained('aziendatipo')->nullOnDelete();

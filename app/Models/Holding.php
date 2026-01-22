@@ -54,10 +54,18 @@ class Holding extends Model implements HasMedia
     }
 
     /**
-     * Relazione one-to-many con Dipendente
+     * Relazione one-to-many con Mandante
      */
     public function mandante(): HasMany
     {
         return $this->hasMany(Mandante::class);
+    }
+
+    /**
+     * Relazione one-to-many con Fornitore
+     */
+    public function fornitore(): HasMany
+    {
+        return $this->hasMany(Fornitore::class);
     }
 }
