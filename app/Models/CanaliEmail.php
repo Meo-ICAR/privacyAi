@@ -25,6 +25,10 @@ class CanaliEmail extends Model implements HasMedia
 
     protected $casts = [];
 
+    public function getEmailAttribute()
+    {
+        return $this->username;
+    }
 
     /**
      * Relazione many-to-one con Email provider

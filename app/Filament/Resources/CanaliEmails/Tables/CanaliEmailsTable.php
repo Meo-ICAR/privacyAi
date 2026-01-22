@@ -6,9 +6,8 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
-use Filament\Tables\Table;
-
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 
 class CanaliEmailsTable
 {
@@ -23,6 +22,7 @@ class CanaliEmailsTable
                 TextColumn::make('username')
                     ->label('Email')
                     ->searchable()
+                    ->sortable()
                     ->copyable(),
                 TextColumn::make('emailProvider.display_name')
                     ->label('Provider')

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\InboundEmails\Schemas;
 
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
 class InboundEmailForm
@@ -10,10 +11,9 @@ class InboundEmailForm
     {
         return $schema
             ->components([
-                onents\TextInput::make('subject')->readOnly(),
-                Forms\Components\TextInput::make('from_email')->readOnly(),
+                TextInput::make('subject')->readOnly(),
+                TextInput::make('from_email')->readOnly(),
                 // ...campi di base read-only
-
             ]);
     }
 }

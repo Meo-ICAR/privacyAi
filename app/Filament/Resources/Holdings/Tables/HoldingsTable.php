@@ -6,6 +6,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -15,6 +16,10 @@ class HoldingsTable
     {
         return $table
             ->columns([
+                ImageColumn::make('logo')
+                    ->label('Logo')
+                    ->circular()
+                    ->getStateUsing(fn($record) => $record->getFirstMediaUrl('logo', 'thumb')),
                 TextColumn::make('ragione_sociale')
                     ->searchable()
                     ->sortable()

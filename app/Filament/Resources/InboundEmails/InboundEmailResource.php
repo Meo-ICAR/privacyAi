@@ -10,20 +10,23 @@ use App\Filament\Resources\InboundEmails\Schemas\InboundEmailForm;
 use App\Filament\Resources\InboundEmails\Schemas\InboundEmailInfolist;
 use App\Filament\Resources\InboundEmails\Tables\InboundEmailsTable;
 use App\Models\InboundEmail;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;  // Aggiungi questa riga
+use BackedEnum;
+use UnitEnum;
 
 class InboundEmailResource extends Resource
 {
     protected static ?string $model = InboundEmail::class;
-    //  protected static ?string $navigationIcon = 'heroicon-o-inbox';
-    //  protected static string|\UnitEnum|null $navigationGroup = 'Posta Elettronica';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-inbox';
+    protected static string|\UnitEnum|null $navigationGroup = 'Anagrafiche';
     protected static ?string $modelLabel = 'Messaggio';
     protected static ?string $pluralModelLabel = 'Posta in Arrivo';
     protected static ?int $navigationSort = 1;
+    protected static bool $isScopedToTenant = false;
 
     // Disabilita la creazione manuale: le mail arrivano solo dal comando automatico
     public static function canCreate(): bool
@@ -61,5 +64,17 @@ class InboundEmailResource extends Resource
             'view' => ViewInboundEmail::route('/{record}'),
             //  'edit' => EditInboundEmail::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->select('inbound_emails.*')  // Seleziona esplicitamente le colonne di inbound_emails
+            ->whereHas('canale', function ($query) {
+                $query
+                    ->select(['id', 'username'])  // Seleziona solo le colonne necessarie
+                    ->where('mandante_id', auth()->user()->mandante_id)
+                    ->orderBy('username', 'asc');
+            });
     }
 }

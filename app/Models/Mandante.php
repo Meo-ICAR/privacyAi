@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\CanaliEmail;
+use App\Models\InboundEmail;
 use Filament\Models\Contracts\HasName;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -70,5 +72,17 @@ class Mandante extends Model implements HasMedia, HasName
     public function aziendaTipo()
     {
         return $this->belongsTo(AziendaTipo::class, 'aziendatipo_id');
+    }
+
+    public function inboundEmails()
+    {
+        return $this->hasManyThrough(
+            InboundEmail::class,
+            CanaleEmail::class,
+            'mandante_id',  // Foreign key on canali_email table
+            'canale_email_id',  // Foreign key on inbound_emails table
+            'id',  // Local key on mandanti table
+            'id'  // Local key on canali_email table
+        );
     }
 }

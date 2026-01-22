@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\InboundEmails\Schemas;
 
-use Filament\Schemas\Schema;
-use Filament\Schemas\Infolists;
 use App\Models\InboundEmail;
+use Filament\Schemas\Infolists;
+use Filament\Schemas\Schema;
 
 class InboundEmailInfolist
 {
@@ -24,15 +24,13 @@ class InboundEmailInfolist
                                 ->copyable()
                                 ->icon('heroicon-m-at-symbol'),
                         ]),
-
                         Infolists\Components\Group::make([
-                            Infolists\Components\TextEntry::make('canale.email')
+                            Infolists\Components\TextEntry::make('canale.username')
                                 ->label('Inviato a (Casella)'),
                             Infolists\Components\TextEntry::make('received_at')
                                 ->label('Data Ricezione')
                                 ->dateTime('d F Y, H:i:s'),
                         ]),
-
                         Infolists\Components\Group::make([
                             Infolists\Components\IconEntry::make('is_read')
                                 ->label('Stato')
@@ -43,7 +41,6 @@ class InboundEmailInfolist
                                 ->falseColor('warning'),
                         ]),
                     ]),
-
                 // Corpo della mail e Oggetto
                 Infolists\Components\Section::make('Contenuto Messaggio')
                     ->schema([
@@ -51,27 +48,24 @@ class InboundEmailInfolist
                             ->label('')
                             ->size(Infolists\Components\TextEntry\TextEntrySize::Large)
                             ->weight('bold'),
-
                         // Visualizzatore HTML Sicuro
                         Infolists\Components\TextEntry::make('body_html')
                             ->label('')
-                            ->html() // Renderizza l'HTML
+                            ->html()  // Renderizza l'HTML
                             ->columnSpanFull()
-                            ->prose(), // Migliora la tipografia per la lettura
+                            ->prose(),  // Migliora la tipografia per la lettura
                     ]),
-
                 // Sezione Allegati (Spatie Media Library)
                 Infolists\Components\Section::make('Allegati')
                     ->collapsible()
-                    ->collapsed(fn ($record) => $record->getMedia('attachments')->isEmpty())
-                    ->badge(fn ($record) => $record->getMedia('attachments')->count())
+                    ->collapsed(fn($record) => $record->getMedia('attachments')->isEmpty())
+                    ->badge(fn($record) => $record->getMedia('attachments')->count())
                     ->schema([
                         // Per le immagini: anteprima diretta
                         Infolists\Components\SpatieMediaLibraryImageEntry::make('attachments')
                             ->collection('attachments')
                             ->label('Immagini')
-                            ->filterMediaUsing(fn ($media) => str_starts_with($media->mime_type, 'image/')),
-
+                            ->filterMediaUsing(fn($media) => str_starts_with($media->mime_type, 'image/')),
                         // Per i documenti (PDF, Docx, ecc): Lista scaricabile
                         Infolists\Components\RepeatableEntry::make('documenti')
                             ->label('Documenti')
@@ -82,15 +76,15 @@ class InboundEmailInfolist
                                     ->suffixAction(
                                         Infolists\Components\Actions\Action::make('download')
                                             ->icon('heroicon-o-arrow-down-tray')
-                                            ->url(fn ($record) => $record->getUrl())
+                                            ->url(fn($record) => $record->getUrl())
                                             ->openUrlInNewTab()
                                     ),
                                 Infolists\Components\TextEntry::make('size')
                                     ->label('Dimensione')
-                                    ->formatStateUsing(fn ($record) => round($record->size / 1024, 2).' KB'),
+                                    ->formatStateUsing(fn($record) => round($record->size / 1024, 2) . ' KB'),
                             ])
                             // Trucco per iterare sui media che NON sono immagini
-                            ->getStateUsing(fn ($record) => $record->getMedia('attachments')->reject(fn ($m) => str_starts_with($m->mime_type, 'image/'))),
+                            ->getStateUsing(fn($record) => $record->getMedia('attachments')->reject(fn($m) => str_starts_with($m->mime_type, 'image/'))),
                     ]),
             ]);
     }
