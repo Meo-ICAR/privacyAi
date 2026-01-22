@@ -26,7 +26,6 @@ return new class extends Migration {
             $table
                 ->decimal('stripe_prezzo_mensile', 10, 2)
                 ->nullable()
-                ->after('stripe_subscription_ends_at')
                 ->comment('Prezzo mensile per abbonamento Stripe');
             $table->timestamp('stripe_subscription_ends_at')->nullable();
 
