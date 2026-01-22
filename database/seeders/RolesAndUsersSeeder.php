@@ -42,7 +42,7 @@ class RolesAndUsersSeeder extends Seeder
                 [
                     'name' => 'Admin ' . $tenant->name,
                     'password' => bcrypt('password'),
-                    'tenant_id' => $tenant->id,
+                    'mandante_id' => $tenant->id,
                 ]
             );
 
