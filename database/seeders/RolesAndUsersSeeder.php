@@ -6,6 +6,7 @@ use App\Models\Mandante;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use League\Uri\UriString;
 
 class RolesAndUsersSeeder extends Seeder
 {
@@ -37,16 +38,27 @@ class RolesAndUsersSeeder extends Seeder
         foreach ($tenants as $tenant) {
             $user = User::firstOrCreate(
                 [
-                    'email' => 'admin@' . $tenant->domain,
+                    'email' => 'admin@' . $this->extractDomain($tenant->website),
                 ],
                 [
-                    'name' => 'Admin ' . $tenant->name,
+                    'name' => 'Admin ' . $tenant->ragione_sociale,
                     'password' => bcrypt('password'),
                     'mandante_id' => $tenant->id,
                 ]
             );
 
             $user->assignRole('admin');
+        }
+    }
+
+    function extractDomain($url)
+    {
+        try {
+            $parsed = UriString::parse($url);
+            $host = $parsed['host'] ?? '';
+            return preg_replace('/^www\./i', '', $host);
+        } catch (\Exception $e) {
+            return null;
         }
     }
 }
