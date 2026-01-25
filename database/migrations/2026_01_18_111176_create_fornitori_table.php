@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->ulid('id')->primary();
 
             $table->string('ragione_sociale')->comment('Denominazione fornitore');
-            $table->string('p_iva', 11)->nullable();
+            $table->string('p_iva', 13)->nullable();
             $table->string('website')->nullable()->comment('Sito web aziendale');
             $table->string('responsabile_trattamento')->nullable()->comment('Responsabile del Trattamento ( amministratore azienda)');
             // Privacy Logic: La Mandataria nomina TE (Mandante)
@@ -33,6 +33,9 @@ return new class extends Migration {
                 ->constrained('mansioni')
                 ->nullable()
                 ->comment('Ruolo fornitore per definizione profilo di rischio');
+            $table->string('albo')->nullable()->comment('Albo/Ordine di appartenenza');
+            $table->date('data_iscrizione')->nullable()->comment("Data di iscrizione all'albo");
+
             $table
                 ->foreignUlid('holding_id')
                 ->nullable()  // Nullable se un Mandante è indipendente (non appartiene a gruppi)

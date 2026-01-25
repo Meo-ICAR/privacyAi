@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('holdings', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->string('ragione_sociale')->comment('Nome del Gruppo o Holding');
-            $table->string('p_iva', 11)->nullable();
+            $table->string('p_iva', 13)->nullable();
             $table->string('codice_gruppo')->nullable()->comment('Codice per reportistica aggregata');
 
             $table->text('categorie_dati')->nullable()->comment('Categorie di dati personali trattati');

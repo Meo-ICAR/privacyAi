@@ -13,12 +13,14 @@ class AziendaTipoSeeder extends Seeder
     public function run(): void
     {
         $tipi = [
-            'Micro Impresa',
-            'Piccola Impresa',
-            'Media Impresa',
-            'Grande Impresa',
-            'Pubblica Amministrazione',
-            'Libero Professionista',
+            'Albergo',
+            'Call center',
+            'Finanziaria',
+            'List Provider',
+            'Mediatore',
+            'Software',
+            'Subagenzia',
+            'Utility',
         ];
 
         foreach ($tipi as $tipo) {

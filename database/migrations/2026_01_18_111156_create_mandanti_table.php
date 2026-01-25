@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('mandanti', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->string('ragione_sociale')->comment("Nome legale dell'azienda cliente");
-            $table->string('p_iva', 11)->unique()->comment('Identificativo fiscale univoco');
+            $table->string('p_iva', 13)->nullable();
             $table->string('titolare_trattamento')->comment('Titolare del Trattamento');
             $table->string('email_referente')->nullable()->comment('Contatto primario per comunicazioni privacy');
             $table->boolean('is_active')->default(true)->comment('Stato di validità del contratto/tenant');
@@ -36,6 +36,9 @@ return new class extends Migration {
                 ->nullOnDelete()
                 ->comment('Riferimento alla Holding di appartenenza');
             $table->foreignUlid('aziendatipo_id')->nullable()->constrained('aziendatipo')->nullOnDelete();
+
+            $table->string('fatturare_a')->nullable()->comment('Intestazione per fatturazione');
+            $table->text('indirizzo')->nullable()->comment('Indirizzo completo per fatturazione');
 
             $table->text('categorie_dati')->nullable()->comment('Categorie di dati personali trattati');
             $table->text('descrizione_categorie_dati')->nullable()->comment('Descrizione dettagliata delle categorie di dati');

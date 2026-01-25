@@ -2,13 +2,12 @@
 
 namespace App\Filament\Resources\Dipendentis\Schemas;
 
-use Filament\Schemas\Schema;
-
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Schema;
 
 class DipendentiForm
 {
@@ -36,6 +35,11 @@ class DipendentiForm
                     ->preload()
                     ->helperText('Ruolo aziendale per definizione profilo di rischio'),
                 DatePicker::make('data_assunzione'),
+                TextInput::make('albo')
+                    ->label('Albo/Ordine')
+                    ->maxLength(100),
+                DatePicker::make('data_iscrizione')
+                    ->label('Data Iscrizione Albo'),
                 DatePicker::make('data_dimissioni'),
                 Select::make('filiale_id')
                     ->relationship('filiale', 'nome')

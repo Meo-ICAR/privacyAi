@@ -2,24 +2,33 @@
 
 namespace App\Filament\Resources\Dipendentis\Tables;
 
-use Filament\Actions\BulkActionGroup;
+use App\Models\Corso;
+use App\Models\Mandatarie;
 use Filament\Actions\BulkAction;
+use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\Select;
-use App\Models\Mandatarie;
-use App\Models\Corso;
-use Filament\Tables\Table;
-
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 
 class DipendentisTable
 {
     public static function configure(Table $table): Table
     {
         return $table
+            ->headerActions([
+                Action::make('downloadTemplate')
+                    ->label('Scarica Template')
+                    ->icon('heroicon-o-document-arrow-down')
+                    ->color('gray')
+                    ->action(function () {
+                        return response()->download(storage_path('templates/dipendenti_import_template.xlsx'));
+                    })
+                    ->requiresConfirmation(false),
+            ])
             ->columns([
                 TextColumn::make('nome')
                     ->searchable()
@@ -35,6 +44,16 @@ class DipendentisTable
                 TextColumn::make('filiale.nome')
                     ->label('Filiale')
                     ->sortable(),
+                TextColumn::make('albo')
+                    ->label('Albo')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(),
+                TextColumn::make('data_iscrizione')
+                    ->label('Iscrizione Albo')
+                    ->date()
+                    ->sortable()
+                    ->toggleable(),
                 IconColumn::make('is_active')
                     ->boolean(),
             ])

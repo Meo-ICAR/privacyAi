@@ -50,35 +50,6 @@ class MandantiForm
                     ->searchable()
                     ->preload()
                     ->helperText('Tipologia di azienda'),
-                TextInput::make('stripe_prezzo_mensile')
-                    ->label('Prezzo Mensile (€)')
-                    ->numeric()
-                    ->step(10)
-                    //  ->required()
-                    ->default(0)
-                    ->prefix('€'),
-                // Aggiungi questi nuovi campi
-                Select::make('periodicita')
-                    ->options([
-                        1 => 'Mensile',
-                        2 => 'Bimestrale',
-                        3 => 'Trimestrale',
-                        6 => 'Semestrale',
-                    ])
-                    ->required()
-                    ->default(2)
-                    ->label('Periodicità fatturazione'),
-                TextInput::make('stripe_customer_id')
-                    ->label('ID Cliente Stripe')
-                    ->disabled()
-                    ->maxLength(255),
-                TextInput::make('stripe_subscription_id')
-                    ->label('ID Abbonamento Stripe')
-                    ->disabled()
-                    ->maxLength(255),
-                DatePicker::make('stripe_subscription_ends_at')
-                    ->label('Scadenza abbonamento')
-                    ->displayFormat('d/m/Y'),
                 Toggle::make('is_active')
                     ->default(true)
                     ->helperText('Stato di validità del contratto/tenant'),
@@ -90,6 +61,47 @@ class MandantiForm
                     ->collection('documenti')
                     ->multiple()
                     ->helperText('Documenti generali (Visura, DPA, etc.)'),
+                Section::make('Dati Fatturazione')
+                    ->schema([
+                        TextInput::make('fatturare_a')
+                            ->label('Intestazione Fattura')
+                            ->maxLength(255),
+                        Textarea::make('indirizzo')
+                            ->label('Indirizzo Fatturazione')
+                            ->columnSpanFull(),
+                        TextInput::make('stripe_prezzo_mensile')
+                            ->label('Prezzo Mensile (€)')
+                            ->numeric()
+                            ->step(10)
+                            //  ->required()
+                            ->default(0)
+                            ->prefix('€'),
+                        // Aggiungi questi nuovi campi
+                        Select::make('periodicita')
+                            ->options([
+                                1 => 'Mensile',
+                                2 => 'Bimestrale',
+                                3 => 'Trimestrale',
+                                6 => 'Semestrale',
+                            ])
+                            ->required()
+                            ->default(2)
+                            ->label('Periodicità fatturazione'),
+                        TextInput::make('stripe_customer_id')
+                            ->label('ID Cliente Stripe')
+                            ->disabled()
+                            ->maxLength(255),
+                        TextInput::make('stripe_subscription_id')
+                            ->label('ID Abbonamento Stripe')
+                            ->disabled()
+                            ->maxLength(255),
+                        DatePicker::make('stripe_subscription_ends_at')
+                            ->label('Scadenza abbonamento')
+                            ->displayFormat('d/m/Y'),
+                    ])
+                    ->columns(1)
+                    ->collapsible()
+                    ->collapsed(),
             ]);
     }
 }

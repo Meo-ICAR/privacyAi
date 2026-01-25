@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             ServiziDpoSeeder::class,
             DpoAnagraficaSeeder::class,
             BasiGiuridicheSeeder::class,
+            HoldingsTableSeeder::class,
         ]);
 
         // 2. Architettura Multi-Tenant e Dati di Esempio

@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->foreignUlid('mandante_id')->constrained('mandanti')->cascadeOnDelete();
 
             $table->string('ragione_sociale')->comment('Titolare del Trattamento (Cliente del Call Center)');
-            $table->string('p_iva', 11)->nullable();
+            $table->string('p_iva', 13)->nullable();
             $table->string('website')->nullable()->comment('Sito web aziendale');
             $table->string('landingpage')->nullable()->comment('Landing page per mandataria');
             // Privacy Logic: La Mandataria nomina TE (Mandante)

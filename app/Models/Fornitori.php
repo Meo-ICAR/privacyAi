@@ -26,6 +26,8 @@ class Fornitori extends Model implements HasMedia
         'aziendatipo_id',
         'mansione_id',
         'holding_id',
+        'albo',
+        'data_iscrizione',
     ];
 
     protected $casts = [
