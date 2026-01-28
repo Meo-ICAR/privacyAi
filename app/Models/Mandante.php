@@ -113,4 +113,14 @@ class Mandante extends Model implements HasMedia, HasName
     {
         return $this->hasMany(FornitoreMandataria::class);
     }
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+
+    public function primaryUser()
+    {
+        return $this->hasOne(User::class)->latest();
+    }
 }

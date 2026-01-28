@@ -8,7 +8,9 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +21,12 @@ class MandantisTable
     {
         return $table
             ->columns([
+                // Add this to your table columns:
+                ImageColumn::make('logo')
+                    ->label('Logo')
+                    ->circular()
+                    ->defaultImageUrl(fn($record) => 'https://ui-avatars.com/api/?name=' . urlencode($record->ragione_sociale) . '&color=FFFFFF&background=oklch(0.141+0.005+285.823)')
+                    ->toggleable(),
                 TextColumn::make('ragione_sociale')
                     ->searchable()
                     ->sortable(),
@@ -75,13 +83,29 @@ class MandantisTable
                     ->label('Impersonate')
                     ->icon('heroicon-o-user-group')
                     ->color('warning')
-                    ->url(fn($record) => route('impersonate', [
-                        'user' => User::where('mandante_id', $record->id)
-                            ->role('admin')
-                            ->first()
-                            ?->id ?? User::where('mandante_id', $record->id)->first()?->id
-                    ]))
-                    ->visible(fn() => Auth::user()->hasRole('super_admin') && !session()->has('impersonated_by'))
+                    ->url(function ($record) {
+                        // Get the admin user for this mandante
+                        $user = $record
+                            ->users()
+                            ->whereHas('roles', function ($query) {
+                                $query->where('name', 'admin');
+                            })
+                            ->first();
+
+                        if (!$user) {
+                            // If no admin user found, try any user
+                            $user = $record->users()->first();
+                        }
+
+                        if (!$user) {
+                            return null;
+                        }
+
+                        return route('impersonate', ['user' => $user->id]);
+                    })
+                    ->visible(function ($record) {
+                        return $record->users()->exists();
+                    })
                     ->requiresConfirmation(),
             ])
             ->toolbarActions([

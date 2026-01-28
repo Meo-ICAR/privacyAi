@@ -42,24 +42,26 @@ class Holding extends Model implements HasMedia
         'richiesto_consenso' => 'boolean',
     ];
 
-    protected static function booted()
-    {
-        static::addGlobalScope('tenant', function (Builder $builder) {
-            // If the user is a super admin and is impersonating another user
-            if (auth()->user()?->hasRole('super_admin') && session()->has('impersonated_by')) {
-                // Show holdings of the impersonated tenant
-                $builder->whereHas('mandante', function ($query) {
-                    $query->where('mandante_id', auth()->user()->mandante_id);
-                });
-            }
-            // Otherwise, apply the normal tenant filter
-            elseif (auth()->check() && $tenantId = auth()->user()->mandante_id) {
-                $builder->whereHas('mandante', function ($query) use ($tenantId) {
-                    $query->where('mandante_id', $tenantId);
-                });
-            }
-        });
-    }
+    /*
+     * protected static function booted()
+     * {
+     *     static::addGlobalScope('tenant', function (Builder $builder) {
+     *         // If the user is a super admin and is impersonating another user
+     *         if (auth()->user()?->hasRole('super_admin') && session()->has('impersonated_by')) {
+     *             // Show holdings of the impersonated tenant
+     *             $builder->whereHas('mandante', function ($query) {
+     *                 $query->where('mandante_id', auth()->user()->mandante_id);
+     *             });
+     *         }
+     *         // Otherwise, apply the normal tenant filter
+     *         elseif (auth()->check() && $tenantId = auth()->user()->mandante_id) {
+     *             $builder->whereHas('mandante', function ($query) use ($tenantId) {
+     *                 $query->where('mandante_id', $tenantId);
+     *             });
+     *         }
+     *     });
+     * }
+     */
 
     /**
      * Register the media collections.
