@@ -26,7 +26,7 @@ class DipendentisTable
                 TextColumn::make('cognome')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('codice_fiscale')
+                TextColumn::make('email_aziendale')
                     ->searchable(),
                 TextColumn::make('mansione.nome')
                     ->label('Mansione')
