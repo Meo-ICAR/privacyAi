@@ -75,8 +75,6 @@ class DatabaseSeeder extends Seeder
             FilialiSeeder::class,
             MandatariaSeeder::class,
             FornitoriSeeder::class,
-            DipendentiSeeder::class,
-            FormazioneDipendentiSeeder::class,
             CanaleEmailSeeder::class,
             SitiWebSeeder::class,
             RolesAndUsersSeeder::class,
