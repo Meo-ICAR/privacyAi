@@ -15,12 +15,13 @@ return new class extends Migration {
             $table->ulid('id')->primary();
 
             // Dati Anagrafici
-            $table->string('nome');
+            $table->string('nome')->nullable();
             $table->string('cognome');
 
             // Dati Sensibili (PII) - Da gestire con casts 'encrypted' nel Model
             $table
                 ->string('codice_fiscale')
+                ->nullable()
                 ->comment('Dato PII - Criptato a riposo ex Art. 32 GDPR');
 
             $table

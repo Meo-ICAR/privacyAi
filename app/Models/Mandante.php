@@ -2,22 +2,32 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasLogo;  // Add this
 use App\Models\CanaliEmail;
 use App\Models\InboundEmail;
 use Filament\Models\Contracts\HasName;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Mandante extends Model implements HasMedia, HasName
 {
-    use HasUlids, InteractsWithMedia;
+    use HasUlids, InteractsWithMedia, HasLogo;
 
     public function getFilamentName(): string
     {
         return $this->ragione_sociale;
+    }
+
+    /**
+     * Register the media collections for this model.
+     */
+    public function registerMediaCollections(): void
+    {
+        $this->registerLogoMediaCollection();  // Call the trait method
     }
 
     protected $table = 'mandanti';
@@ -45,6 +55,14 @@ class Mandante extends Model implements HasMedia, HasName
         'stripe_subscription_ends_at' => 'datetime',
         'periodicita' => 'integer',
     ];
+
+    protected static function booted(): void
+    {
+        // Aggiungiamo uno Scope Globale anonimo
+        static::addGlobalScope('ordine_alfabetico', function (Builder $builder) {
+            $builder->orderBy('ragione_sociale', 'asc');
+        });
+    }
 
     public function getPeriodicitaTestoAttribute(): string
     {

@@ -23,10 +23,24 @@ class HoldingSeeder extends Seeder
                 'p_iva' => '98765432109',
                 'codice_gruppo' => 'FTV-002',
             ],
+            [
+                'ragione_sociale' => 'D AGOSTINO',
+                'p_iva' => '0000000000',
+                'codice_gruppo' => 'DAGO',
+            ],
+            [
+                'ragione_sociale' => 'PEOPLE GROUP',
+                'p_iva' => '1111111111',
+                'codice_gruppo' => 'PEOPLE',
+            ],
+            [
+                'ragione_sociale' => 'GARGIULO',
+                'codice_gruppo' => 'GARG',
+            ],
         ];
 
         foreach ($holdings as $holding) {
-            Holding::firstOrCreate(['p_iva' => $holding['p_iva']], $holding);
+            Holding::firstOrCreate(['ragione_sociale' => $holding['ragione_sociale']], $holding);
         }
     }
 }

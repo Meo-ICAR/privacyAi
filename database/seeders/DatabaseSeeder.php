@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             HoldingSeeder::class,
             MandanteSeeder::class,
-            MandantiSeeder::class,
+            // MandantiSeeder::class,
         ]);
 
         // 2a. Assicuriamoci che esista il ruolo super_admin

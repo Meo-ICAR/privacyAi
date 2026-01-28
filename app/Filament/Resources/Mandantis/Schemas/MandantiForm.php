@@ -2,11 +2,16 @@
 
 namespace App\Filament\Resources\Mandantis\Schemas;
 
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Tabs\Tab;
+use Filament\Schemas\Components\Section;  // This should already be imported
 use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
 
 class MandantiForm
 {

@@ -19,16 +19,6 @@ class DipendentisTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->headerActions([
-                Action::make('downloadTemplate')
-                    ->label('Scarica Template')
-                    ->icon('heroicon-o-document-arrow-down')
-                    ->color('gray')
-                    ->action(function () {
-                        return response()->download(storage_path('templates/dipendenti_import_template.xlsx'));
-                    })
-                    ->requiresConfirmation(false),
-            ])
             ->columns([
                 TextColumn::make('nome')
                     ->searchable()

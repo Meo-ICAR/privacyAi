@@ -23,6 +23,9 @@ class RolesAndUsersSeeder extends Seeder
             'hr' => 'HR',
             'commercial' => 'Commercial',
             'employee' => 'Employee',
+            'call' => 'Call Center',
+            'agente' => 'Agente',
+            'dpo' => 'DPO',
         ];
 
         foreach ($roles as $name => $label) {

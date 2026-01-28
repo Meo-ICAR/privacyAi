@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Mandantis\Tables;
 
+use App\Filament\Components\LogoColumn;  // Add this
 use App\Models\User;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
@@ -20,13 +21,10 @@ class MandantisTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->defaultSort('ragione_sociale', 'asc')
             ->columns([
                 // Add this to your table columns:
-                ImageColumn::make('logo')
-                    ->label('Logo')
-                    ->circular()
-                    ->defaultImageUrl(fn($record) => 'https://ui-avatars.com/api/?name=' . urlencode($record->ragione_sociale) . '&color=FFFFFF&background=oklch(0.141+0.005+285.823)')
-                    ->toggleable(),
+                LogoColumn::make('logo'),  // Use the reusable component
                 TextColumn::make('ragione_sociale')
                     ->searchable()
                     ->sortable(),

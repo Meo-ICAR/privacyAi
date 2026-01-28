@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use App\Models\Concerns\BelongsToMandante;
-use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Dipendenti extends Model implements HasMedia
 {
-    use HasUlids, InteractsWithMedia, BelongsToMandante;
+    use HasUuids, InteractsWithMedia, BelongsToMandante;
 
     protected $table = 'dipendenti';
 
@@ -33,7 +33,6 @@ class Dipendenti extends Model implements HasMedia
         'data_dimissioni' => 'date',
     ];
 
-
     /**
      * Relazione many-to-one con Mandante
      */
@@ -47,7 +46,8 @@ class Dipendenti extends Model implements HasMedia
      */
     public function mandatarie()
     {
-        return $this->belongsToMany(Mandatarie::class, 'dipendente_mandataria', 'dipendente_id', 'mandataria_id')
+        return $this
+            ->belongsToMany(Mandatarie::class, 'dipendente_mandataria', 'dipendente_id', 'mandataria_id')
             ->using(DipendenteMandataria::class)
             ->withPivot(['mansione_id', 'data_autorizzazione', 'is_active'])
             ->withTimestamps();
@@ -68,7 +68,8 @@ class Dipendenti extends Model implements HasMedia
      */
     public function corsi()
     {
-        return $this->belongsToMany(Corso::class, 'corso_dipendente', 'dipendente_id', 'corso_id')
+        return $this
+            ->belongsToMany(Corso::class, 'corso_dipendente', 'dipendente_id', 'corso_id')
             ->using(CorsoDipendente::class)
             ->withPivot('id')
             ->withTimestamps();

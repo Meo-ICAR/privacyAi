@@ -16,6 +16,8 @@ return new class extends Migration {
             $table->string('p_iva', 13)->nullable();
             $table->string('titolare_trattamento')->comment('Titolare del Trattamento');
             $table->string('email_referente')->nullable()->comment('Contatto primario per comunicazioni privacy');
+            $table->string('amministrazione')->nullable()->comment('Nominativo per sollecito pagamento');
+            $table->string('email_amministrazione')->nullable()->comment('Contatto per sollecito pagamento');
             $table->boolean('is_active')->default(true)->comment('Stato di validità del contratto/tenant');
 
             $table->string('website')->nullable()->comment('Sito web aziendale');

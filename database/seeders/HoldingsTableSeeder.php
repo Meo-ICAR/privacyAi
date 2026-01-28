@@ -13,9 +13,10 @@ class HoldingsTableSeeder extends Seeder
     {
         $listproviders = [
             ['ragione_sociale' => 'GDS', 'p_iva' => '01477560138'],  // GDS Communication S.r.l.
+            ['ragione_sociale' => 'DATITALIA', 'p_iva' => '01477560138'],  // GDS Communication S.r.l.
         ];
 
-        $sw = [
+        $sws = [
             ['ragione_sociale' => 'INNOVATIVE', 'p_iva' => '07209440721'],  // Innovazione & Software S.r.l.
             ['ragione_sociale' => 'MEDIAFACILE', 'p_iva' => '06158600962'],  // Facile.it Mediazione Creditizia S.p.A.
             ['ragione_sociale' => 'EVA', 'p_iva' => '03699320986'],  // Eva Energia S.r.l.

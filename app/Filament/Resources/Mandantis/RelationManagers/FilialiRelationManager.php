@@ -9,6 +9,7 @@ use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ImportAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Schema;
@@ -28,9 +29,6 @@ class FilialiRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return FilialisTable::configure($table)
-            ->headerActions([
-                CreateAction::make(),
-            ])
             ->actions([
                 ViewAction::make(),
                 EditAction::make(),
