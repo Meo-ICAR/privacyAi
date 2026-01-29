@@ -45,10 +45,9 @@ class FornitoriImport implements ToModel, WithHeadingRow, WithMapping
             ?? $normalizedRow->get('societa')
             ?? $normalizedRow->get('fornitore');
 
-        $fornitura_prodotti = $normalizedRow->get('prodotti_intermediati')
-            ;
+      
 
-        $existing = Fornitori::where('ragione_sociale', $ragioneSociale)
+        $existing = Mandatarie::where('ragione_sociale', $ragioneSociale)
             ->where('mandante_id', $tenantId)
             ->first();
 
@@ -74,15 +73,16 @@ class FornitoriImport implements ToModel, WithHeadingRow, WithMapping
        
 
         // Creazione Istanza Modello
-        $fornitore = new Fornitori();
+        $fornitore = new Fornitor();
 
         $fornitore->id = (string) Str::ulid();
         $fornitore->mandante_id = $tenantId;
 
         $fornitore->ragione_sociale = $ragioneSociale;
-        $fornitore->p_iva =  $normalizedRow->get('p_iva');
-        $fornitore->website = $normalizedRow->get('website');
+
         /*
+                $fornitore->p_iva =  $normalizedRow->get('p_iva');
+        $fornitore->website = $normalizedRow->get('website');
         $fornitore->responsabile_trattamento = $normalizedRow->get('responsabile_trattamento')
             ?? $normalizedRow->get('responsabile')
             ?? $normalizedRow->get('referente');
@@ -90,7 +90,7 @@ class FornitoriImport implements ToModel, WithHeadingRow, WithMapping
         $fornitore->fornitura_prodotti = $normalizedRow->get('fornitura_prodotti')
             ?? $normalizedRow->get('servizi')
             ?? $normalizedRow->get('prodotti')
-            ?? $normalizedRow->get('descrizione_servizi');
+            ?? $normalizedRow->get('prodotti_intermediati');
         /*
         $fornitore->email_referente = $normalizedRow->get('email_referente')
             ?? $normalizedRow->get('email')

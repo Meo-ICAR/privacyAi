@@ -18,6 +18,8 @@ return new class extends Migration {
             $table->string('ragione_sociale')->comment('Titolare del Trattamento (Cliente del Call Center)');
             $table->string('p_iva', 13)->nullable();
             $table->string('website')->nullable()->comment('Sito web aziendale');
+            $table->string('fornitura_prodotti')->nullable()->comment('Descrizione servizi forniti');
+            $table->string('responsabile_trattamento')->nullable()->comment('Responsabile del Trattamento ( amministratore azienda)');
             $table->string('landingpage')->nullable()->comment('Landing page per mandataria');
             // Privacy Logic: La Mandataria nomina TE (Mandante)
             $table->date('data_ricezione_nomina')->comment('Data in cui la Mandataria ha nominato il Mandante come Responsabile');
