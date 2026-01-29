@@ -5,6 +5,8 @@ namespace App\Imports;
 use App\Models\Dipendente;
 use App\Models\Filiali;  // Assumo che il model della filiale si chiami Sede
 use App\Models\Mansioni;  // Assumo che il model della filiale si chiami Sede
+use App\Models\Mandatarie;
+use App\Models\Corso;
 use Filament\Actions\Imports\Models\Import;
 use Filament\Facades\Filament;
 use Illuminate\Support\Facades\Log;
@@ -43,11 +45,16 @@ class DipendentiImport implements ToModel, WithHeadingRow, WithMapping
          * {"attributi":{"impiegato":"ANATRIELLO VALENTINA","codice_fiscale":"NTRVNT92P59A512W","luogo_di_nascita":"AVERSA","data_di_nascita":33866,"sede":"AVERSA","tipoctr":"cococo","inizioctr":45356,"fine_ctr":46054,"mansione":"OPERATORE"}}
          */
 
+        /*  RACES
+
+        */
+
         // 2. Controllo Duplicati (Logica tua: Nome + Cognome)
         // Recuperiamo i dati grezzi per fare il controllo
         $nome = $normalizedRow->get('nome');
         $cognome = $normalizedRow->get('cognome')
-            ?? $normalizedRow->get('nominativo')
+             ?? $normalizedRow->get('nominativi_dipendenti_/collaboratori')
+             ?? $normalizedRow->get('nominativo')
             ?? $normalizedRow->get('impiegato');
 
         $existing = Dipendente::where('nome', $nome)
@@ -63,6 +70,7 @@ class DipendentiImport implements ToModel, WithHeadingRow, WithMapping
         // 3. Gestione Filiale (Lookup o Creazione)
         $nomeSede = $normalizedRow->get('filiale')
             ?? $normalizedRow->get('sede')
+             ?? $normalizedRow->get('sede_lavorativa')
             ?? $normalizedRow->get('citta');
 
         $sedeId = null;
@@ -87,7 +95,57 @@ class DipendentiImport implements ToModel, WithHeadingRow, WithMapping
             $roleId = $role->id;
         }
 
-        // 5. Creazione Istanza Modello (NON un array)
+        // 5. Gestione Mandatarie (valori separati da "-")
+        $mandatarieIds = [];
+        $mandatarieField = $normalizedRow->get('mandataria')
+            ?? $normalizedRow->get('mandatarie')
+             ?? $normalizedRow->get('mandanti_con_le_quali_sono_censiti');
+
+        if ($mandatarieField) {
+            // Dividi il campo per "-" e rimuovi spazi vuoti
+            $mandatarieNames = array_map('trim', explode('-', $mandatarieField));
+            
+            foreach ($mandatarieNames as $mandatariaName) {
+                if (!empty($mandatariaName) && !in_array(strtoupper($mandatariaName), ['NESSUN', 'NESSUNO', 'NESSUNA'])) {
+                    // Cerca o crea la mandataria
+                    $mandataria = Mandatarie::firstOrCreate(
+                        [
+                            'ragione_sociale' => $mandatariaName,
+                            'mandante_id' => $tenantId
+                        ],
+                        [
+                          //  'p_iva' => 'TEMP-' . Str::upper(Str::random(8)),
+                          //  'email_referente' => 'da-completare@example.com',
+                        ]
+                    );
+                    $mandatarieIds[] = $mandataria->id;
+                }
+            }
+        }
+   $corsiIds = [];
+        $corsiNames = $normalizedRow->get('corsi_di_formazione')
+            ?? $normalizedRow->get('corsi_di_aggiornamento')
+             ?? $normalizedRow->get('corsi_di_aggiornamento/formazione')
+             ?? $normalizedRow->get('corsi_di_formazione');
+              foreach ($corsiNames as $corsiName) {
+                if (!empty($corsiName) || !str_starts_with($corsiName, 'NESSUN')    || !str_starts_with($corsiName, 'NESSUNO') || !str_starts_with($corsiName, 'NESSUNA')) {
+                    // Cerca o crea la mandataria
+                    $corsi = Corso::firstOrCreate(
+                        [   
+                            'titolo' => $corsiName,
+                            'mandante_id' => $tenantId
+                        ],
+                        [
+                          //  'p_iva' => 'TEMP-' . Str::upper(Str::random(8)),
+                          //  'email_referente' => 'da-completare@example.com',
+                        ]
+                    );
+                    $corsiIds[] = $corsi->id;
+                }
+            }
+      
+
+        // 6. Creazione Istanza Modello (NON un array)
         $dipendente = new Dipendente();
 
         // Assegnazione manuale dei campi
@@ -118,9 +176,33 @@ class DipendentiImport implements ToModel, WithHeadingRow, WithMapping
         $dipendente->filiale_id = $sedeId;
         $dipendente->mansione_id = $roleId;
 
-        // 7. Ritorna l'oggetto
+        // 7. Salva il dipendente prima di creare le relazioni
+        $dipendente->save();
+
+        // 8. Crea le relazioni con le mandatarie
+        if (!empty($mandatarieIds)) {
+            foreach ($mandatarieIds as $mandatariaId) {
+                $dipendente->mandatarie()->attach($mandatariaId, [
+                    'mansione_id' => $roleId,
+                    'data_autorizzazione' => now(),
+                    'is_active' => true,
+                ]);
+            }
+        }
+
+          // 9. Crea le relazioni con i corsi
+        if (!empty($corsiIds)) {
+            foreach ($corsiIds as $corsiId) {
+                $dipendente->corsi()->attach($corsiId, [
+                    'mansione_id' => $roleId,
+              
+                ]);
+            }
+        }
+
+        // 9. Ritorna l'oggetto
         // Se usi "ToModel" di Laravel Excel, LUI farà il save().
-        // Se fai save() qui e poi ritorni, rischi il doppio inserimento.
+        // Ma abbiamo già fatto il save() per gestire le relazioni many-to-many
         return $dipendente;
     }
 
@@ -191,6 +273,10 @@ class DipendentiImport implements ToModel, WithHeadingRow, WithMapping
             ImportColumn::make('mansione_excel')
                 ->label('Mansione')
                 ->guess(['mansione', 'ufficio', 'tipo']),
+            // GESTIONE MANDATARIE (valori separati da "-")
+            ImportColumn::make('mandatarie_excel')
+                ->label('Mandatarie (separate da -)')
+                ->guess(['mandataria', 'mandatarie', 'societa', 'company']),
         ];
     }
 }
