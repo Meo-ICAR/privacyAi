@@ -33,11 +33,29 @@ class MandantiForm
                     ->required()
                     ->maxLength(255)
                     ->helperText('Titolare del Trattamento'),
+                TextInput::make('referente')
+                    ->label('Referente')
+                    ->nullable()
+                    ->maxLength(255)
+                    ->helperText('Nome del referente principale'),
                 TextInput::make('email_referente')
                     ->email()
                     ->nullable()
                     ->maxLength(255)
                     ->helperText('Contatto primario per comunicazioni privacy'),
+                TextInput::make('email_dpo')
+                    ->label('Email DPO')
+                    ->email()
+                    ->nullable()
+                    ->maxLength(255)
+                    ->helperText('Email del Data Protection Officer'),
+                Select::make('email_provider_id')
+                    ->label('Email Provider')
+                    ->relationship('emailProvider', 'name')
+                    ->nullable()
+                    ->searchable()
+                    ->preload()
+                    ->helperText('Provider di servizi email'),
                 TextInput::make('website')
                     ->url()
                     ->nullable()

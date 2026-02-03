@@ -34,8 +34,20 @@ class MandantisTable
                 TextColumn::make('titolare_trattamento')
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('referente')
+                    ->label('Referente')
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('email_referente')
                     ->searchable(),
+                TextColumn::make('email_dpo')
+                    ->label('Email DPO')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('emailProvider.name')
+                    ->label('Email Provider')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('holding.ragione_sociale')
                     ->label('Holding')
                     ->sortable(),

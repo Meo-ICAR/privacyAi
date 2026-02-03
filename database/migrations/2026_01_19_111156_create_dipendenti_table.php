@@ -28,7 +28,10 @@ return new class extends Migration {
                 ->string('email_aziendale')
                 ->nullable()
                 ->comment('Email per comunicazioni e notifiche scadenze corsi');
-
+            $table
+                ->string('label_id')
+                ->nullable()
+                ->comment('Label per lettura email aziendale');
             // Informazioni Lavorative
             $table
                 ->foreignUlid('mansione_id')

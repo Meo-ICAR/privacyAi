@@ -36,7 +36,10 @@ class Mandante extends Model implements HasMedia, HasName
         'ragione_sociale',
         'p_iva',
         'titolare_trattamento',
+        'referente',
         'email_referente',
+        'email_dpo',
+        'email_provider_id',
         'is_active',
         'website',
         'aziendatipo_id',
@@ -113,6 +116,14 @@ class Mandante extends Model implements HasMedia, HasName
     public function aziendaTipo()
     {
         return $this->belongsTo(AziendaTipo::class, 'aziendatipo_id');
+    }
+
+    /**
+     * Relazione many-to-one con EmailProvider
+     */
+    public function emailProvider()
+    {
+        return $this->belongsTo(EmailProvider::class);
     }
 
     public function inboundEmails()

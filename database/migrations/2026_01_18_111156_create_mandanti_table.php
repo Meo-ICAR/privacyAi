@@ -15,12 +15,22 @@ return new class extends Migration {
             $table->string('ragione_sociale')->comment("Nome legale dell'azienda cliente");
             $table->string('p_iva', 13)->nullable();
             $table->string('titolare_trattamento')->comment('Titolare del Trattamento');
+            $table->string('referente')->nullable();
             $table->string('email_referente')->nullable()->comment('Contatto primario per comunicazioni privacy');
+            $table->string('email_dpo')->nullable()->comment('Contatto DPO/Privacy Officer');
+            $table->foreignId('email_provider_id')->nullable()->constrained('email_providers')->comment('Provider email per DPO/Privacy Officer');
+            $table->string('email_dpo_username')->nullable()->comment('Username per accesso email DPO/Privacy Officer');
+            $table->string('email_dpo_password')->nullable()->comment('Password per accesso email DPO/Privacy Officer');
+
             $table->string('amministrazione')->nullable()->comment('Nominativo per sollecito pagamento');
             $table->string('email_amministrazione')->nullable()->comment('Contatto per sollecito pagamento');
             $table->boolean('is_active')->default(true)->comment('Stato di validità del contratto/tenant');
 
             $table->string('website')->nullable()->comment('Sito web aziendale');
+            $table
+                ->string('label_id')
+                ->nullable()
+                ->comment('Label per lettura emails aziendali');
 
             $table->string('stripe_customer_id')->nullable();
             $table->string('stripe_subscription_id')->nullable();
