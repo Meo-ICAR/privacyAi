@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\BelongsToMandante;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
@@ -24,4 +25,15 @@ class Dipendente extends Model implements HasMedia
         'albo',
         'data_iscrizione',
     ];
+
+    /**
+     * Relazione many-to-many con Mandatarie
+     */
+    public function mandatarie(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(Mandatarie::class, 'dipendente_mandataria', 'dipendente_id', 'mandataria_id')
+            ->withPivot(['mansione_id', 'data_autorizzazione', 'is_active'])
+            ->withTimestamps();
+    }
 }

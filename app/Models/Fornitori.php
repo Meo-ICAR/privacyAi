@@ -19,6 +19,7 @@ class Fornitori extends Model implements HasMedia
         'p_iva',
         'website',
         'responsabile_trattamento',
+        'fornitura_prodotti',
         'data_nomina',
         'email_referente',
         'note_compliance',
