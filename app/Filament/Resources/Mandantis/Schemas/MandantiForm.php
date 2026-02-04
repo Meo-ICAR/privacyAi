@@ -140,6 +140,32 @@ class MandantiForm
                     ->columns(1)
                     ->collapsible()
                     ->collapsed(),
+                Section::make('Gmail Labels')
+                    ->schema([
+                        TextInput::make('gmail_labels_count')
+                            ->label('Numero di Gmail Labels')
+                            ->disabled()
+                            ->default(function ($record) {
+                                return $record ? $record->gmailLabels()->count() : 0;
+                            })
+                            ->helperText('Numero totale di label Gmail associate'),
+                        Textarea::make('gmail_labels_list')
+                            ->label('Gmail Labels Associate')
+                            ->disabled()
+                            ->rows(3)
+                            ->default(function ($record) {
+                                if (!$record)
+                                    return '';
+                                return $record
+                                    ->gmailLabels()
+                                    ->pluck('name')
+                                    ->implode(', ');
+                            })
+                            ->helperText('Elenco delle label Gmail associate'),
+                    ])
+                    ->columns(1)
+                    ->collapsible()
+                    ->collapsed(),
             ]);
     }
 }

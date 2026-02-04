@@ -48,6 +48,11 @@ class MandantisTable
                     ->label('Email Provider')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('gmail_labels_count')
+                    ->label('Gmail Labels')
+                    ->getStateUsing(fn($record) => $record->gmailLabels()->count())
+                    ->sortable()
+                    ->toggleable(),
                 TextColumn::make('holding.ragione_sociale')
                     ->label('Holding')
                     ->sortable(),

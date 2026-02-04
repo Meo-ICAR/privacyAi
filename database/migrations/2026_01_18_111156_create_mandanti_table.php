@@ -21,7 +21,7 @@ return new class extends Migration {
             $table->foreignId('email_provider_id')->nullable()->constrained('email_providers')->comment('Provider email per DPO/Privacy Officer');
             $table->string('email_dpo_username')->nullable()->comment('Username per accesso email DPO/Privacy Officer');
             $table->string('email_dpo_password')->nullable()->comment('Password per accesso email DPO/Privacy Officer');
-            $table->string('label_email_dpo')->nullable()->comment('Label per lettura emails aziendali');
+            $table->string('gmail_label_id')->nullable()->comment('ID Label per lettura emails aziendali');
             $table->string('amministrazione')->nullable()->comment('Nominativo per sollecito pagamento');
             $table->string('email_amministrazione')->nullable()->comment('Contatto per sollecito pagamento');
             $table->boolean('is_active')->default(true)->comment('Stato di validità del contratto/tenant');

@@ -129,6 +129,14 @@ class Mandante extends Model implements HasMedia, HasName
         return $this->belongsTo(EmailProvider::class);
     }
 
+    /**
+     * Relazione one-to-many con GmailLabel
+     */
+    public function gmailLabels()
+    {
+        return $this->hasMany(GmailLabel::class);
+    }
+
     public function inboundEmails()
     {
         return $this->hasManyThrough(

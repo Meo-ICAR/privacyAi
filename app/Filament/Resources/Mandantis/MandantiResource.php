@@ -46,6 +46,7 @@ class MandantiResource extends Resource
         return [
             RelationManagers\FilialiRelationManager::class,
             RelationManagers\SitiWebRelationManager::class,
+            RelationManagers\GmailLabelsRelationManager::class,
         ];
     }
 
