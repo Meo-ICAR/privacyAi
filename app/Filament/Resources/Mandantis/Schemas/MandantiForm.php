@@ -56,6 +56,21 @@ class MandantiForm
                     ->searchable()
                     ->preload()
                     ->helperText('Provider di servizi email'),
+                TextInput::make('label_email_dpo')
+                    ->label('Label Email DPO')
+                    ->nullable()
+                    ->maxLength(255)
+                    ->helperText('Label per lettura emails aziendali'),
+                TextInput::make('email_dpo_username')
+                    ->label('Username Email DPO')
+                    ->nullable()
+                    ->maxLength(255)
+                    ->helperText('Username per accesso email DPO/Privacy Officer'),
+                TextInput::make('email_dpo_password')
+                    ->label('Username Email DPO')
+                    ->nullable()
+                    ->maxLength(255)
+                    ->helperText('Password per accesso email DPO/Privacy Officer'),
                 TextInput::make('website')
                     ->url()
                     ->nullable()
