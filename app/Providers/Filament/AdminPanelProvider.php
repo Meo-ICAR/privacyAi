@@ -65,6 +65,32 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            ->plugins([
+                \DutchCodingCompany\FilamentSocialite\FilamentSocialitePlugin::make()
+                    ->providers([
+                        \DutchCodingCompany\FilamentSocialite\Provider::make('google')
+                            ->label('Google')
+                            ->icon('fab-google')
+                            ->color(\Filament\Support\Colors\Color::hex('#db4437'))
+                            ->outlined(false)
+                            ->stateless(false),
+                        \DutchCodingCompany\FilamentSocialite\Provider::make('microsoft')
+                            ->label('Microsoft')
+                            ->icon('fab-microsoft')
+                            ->color(\Filament\Support\Colors\Color::hex('#00a4ef'))
+                            ->outlined(false)
+                            ->stateless(false),
+                        \DutchCodingCompany\FilamentSocialite\Provider::make('linkedin')
+                            ->label('LinkedIn')
+                            ->icon('fab-linkedin')
+                            ->color(\Filament\Support\Colors\Color::hex('#0077b5'))
+                            ->outlined(false)
+                            ->stateless(false),
+                    ])
+                    ->slug('admin')
+                    ->registration(true)
+                    ->userModelClass(\App\Models\User::class)
+            ])
             ->authMiddleware([
                 Authenticate::class,
             ]);
