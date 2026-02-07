@@ -38,6 +38,24 @@ class MandatariesTable
                 TextColumn::make('data_ricezione_nomina')
                     ->date()
                     ->sortable(),
+                TextColumn::make('compliance_score')
+                    ->label('Score')
+                    ->sortable()
+                    ->badge()
+                    ->color(fn ($state) => match (true) {
+                        $state >= 80 => 'success',
+                        $state >= 50 => 'warning',
+                        default => 'danger',
+                    }),
+                TextColumn::make('dpa_status')
+                    ->label('DPA')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'signed' => 'success',
+                        'sent', 'draft' => 'warning',
+                        'expired', 'missing' => 'danger',
+                        default => 'gray',
+                    }),
                 TextColumn::make('holding.ragione_sociale')
                     ->label('Holding')
                     ->sortable(),

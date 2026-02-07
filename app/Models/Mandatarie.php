@@ -40,12 +40,22 @@ class Mandatarie extends Model implements HasMedia
         'modalita_raccolta_consenso',
         'contitolare_trattamento',
         'note_gdpr',
+        'compliance_score',
+        'dpa_status',
+        'dpa_expires_at',
     ];
 
     protected $casts = [
         'data_ricezione_nomina' => 'date',
+        'dpa_expires_at' => 'date',
         'richiesto_consenso' => 'boolean',
     ];
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('dpa_documents');
+        $this->addMediaCollection('documenti');
+    }
 
     /**
      * Relazione many-to-many con Dipendenti

@@ -60,6 +60,35 @@ class MandatarieForm
                     ->collection('documenti')
                     ->multiple()
                     ->helperText('Documenti mandante/mandataria'),
+
+                Section::make('Compliance & DPA')
+                    ->schema([
+                        TextInput::make('compliance_score')
+                            ->label('Punteggio Compliance')
+                            ->numeric()
+                            ->minValue(0)
+                            ->maxValue(100)
+                            ->suffix('/ 100')
+                            ->helperText('Valutazione del livello di compliance (0-100)'),
+                        Select::make('dpa_status')
+                            ->label('Stato DPA')
+                            ->options([
+                                'missing' => 'Mancante',
+                                'draft' => 'Bozza',
+                                'sent' => 'Inviato',
+                                'signed' => 'Firmato',
+                                'expired' => 'Scaduto',
+                            ])
+                            ->default('missing')
+                            ->required(),
+                        DatePicker::make('dpa_expires_at')
+                            ->label('Scadenza DPA'),
+                        SpatieMediaLibraryFileUpload::make('dpa_document')
+                            ->collection('dpa_documents')
+                            ->label('Documento DPA Firmato')
+                            ->downloadable()
+                            ->openable(),
+                    ])->columns(2),
                 Section::make('Trattamento Dati Personali')
                     ->schema([
                         Textarea::make('categorie_dati')

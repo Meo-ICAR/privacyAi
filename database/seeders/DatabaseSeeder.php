@@ -79,5 +79,13 @@ class DatabaseSeeder extends Seeder
             SitiWebSeeder::class,
             RolesAndUsersSeeder::class,
         ]);
+
+        // 4. GDPR Data (Categorie Dati, Trattamenti, Violazioni)
+        // Requires at least one Mandante to exist
+        $this->call([
+            CategoriaDatiSeeder::class,
+            TrattamentoSeeder::class,
+            DataBreachSeeder::class,
+        ]);
     }
 }
