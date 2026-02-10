@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Filament\Resources\TrattamentoResource\Pages;
+namespace App\Filament\Resources\Trattamentos\Pages;
 
-use App\Filament\Resources\TrattamentoResource;
-use Filament\Actions;
+use App\Filament\Resources\Trattamentos\TrattamentoResource;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
 
 class EditTrattamento extends EditRecord
@@ -13,8 +14,8 @@ class EditTrattamento extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\ViewAction::make(),
-            Actions\DeleteAction::make(),
+            ViewAction::make(),
+            DeleteAction::make(),
         ];
     }
 }

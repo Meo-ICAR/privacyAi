@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Resources\TrattamentoResource\Pages;
+namespace App\Filament\Resources\Trattamentos\Pages;
 
-use App\Filament\Resources\TrattamentoResource;
-use Filament\Actions;
+use App\Filament\Resources\Trattamentos\TrattamentoResource;
+use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
 class ViewTrattamento extends ViewRecord
@@ -13,7 +13,7 @@ class ViewTrattamento extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\EditAction::make(),
+            EditAction::make(),
         ];
     }
 }

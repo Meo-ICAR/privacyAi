@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Resources\TrattamentoResource\Pages;
+namespace App\Filament\Resources\Trattamentos\Pages;
 
-use App\Filament\Resources\TrattamentoResource;
-use Filament\Actions;
+use App\Filament\Resources\Trattamentos\TrattamentoResource;
+use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
 class ListTrattamentos extends ListRecords
@@ -13,7 +13,7 @@ class ListTrattamentos extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 }
