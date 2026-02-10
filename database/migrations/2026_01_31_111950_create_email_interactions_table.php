@@ -19,6 +19,13 @@ return new class extends Migration {
             $table->dateTime('sent_at')->nullable();
             $table->string('label_name')->nullable();  // Da quale etichetta arriva
             $table->string('domain')->nullable();
+            // Relazione con il Mandante (Tenant - Responsabile del Trattamento)
+            $table
+                ->foreignUlid('mandante_id')
+                ->constrained('mandanti')
+                ->cascadeOnDelete()
+                ->nullable()
+                ->comment('ID del Tenant proprietario del dato');
             $table->timestamps();
 
             // Indice per velocizzare le ricerche per email

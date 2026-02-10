@@ -70,19 +70,19 @@ class AdminPanelProvider extends PanelProvider
                     ->providers([
                         \DutchCodingCompany\FilamentSocialite\Provider::make('google')
                             ->label('Google')
-                            ->icon('fab-google')
+                            ->icon('heroicon-o-globe-alt')
                             ->color(\Filament\Support\Colors\Color::hex('#db4437'))
                             ->outlined(false)
                             ->stateless(false),
                         \DutchCodingCompany\FilamentSocialite\Provider::make('microsoft')
                             ->label('Microsoft')
-                            ->icon('fab-microsoft')
+                            ->icon('heroicon-o-device-phone-mobile')
                             ->color(\Filament\Support\Colors\Color::hex('#00a4ef'))
                             ->outlined(false)
                             ->stateless(false),
                         \DutchCodingCompany\FilamentSocialite\Provider::make('linkedin')
                             ->label('LinkedIn')
-                            ->icon('fab-linkedin')
+                            ->icon('heroicon-o-users')
                             ->color(\Filament\Support\Colors\Color::hex('#0077b5'))
                             ->outlined(false)
                             ->stateless(false),

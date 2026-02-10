@@ -10,11 +10,11 @@ use App\Filament\Resources\Holdings\Schemas\HoldingForm;
 use App\Filament\Resources\Holdings\Schemas\HoldingInfolist;
 use App\Filament\Resources\Holdings\Tables\HoldingsTable;
 use App\Models\Holding;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use BackedEnum;
 
 class HoldingResource extends Resource
 {
@@ -24,7 +24,7 @@ class HoldingResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-globe-alt';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Configurazioni';
+    protected static string|\UnitEnum|null $navigationGroup = 'Configurazione';
 
     public static function form(Schema $schema): Schema
     {

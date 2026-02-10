@@ -2,10 +2,12 @@
 
 namespace App\Filament\Resources\GmailLabels\Schemas;
 
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 
@@ -32,11 +34,11 @@ class GmailLabelForm
                             ->label('Dominio')
                             ->maxLength(255)
                             ->placeholder('es. innova-tech.cloud')
-                            ->helperText('Dominio associato alla label per l\'associazione automatica al mandante'),
+                            ->helperText("Dominio associato alla label per l'associazione automatica al mandante"),
                         Select::make('type')
                             ->label('Tipo Label')
                             ->options([
-                                'user' => 'User (Creata dall\'utente)',
+                                'user' => "User (Creata dall'utente)",
                                 'system' => 'System (Di sistema)',
                             ])
                             ->required()
@@ -68,7 +70,8 @@ class GmailLabelForm
                             ->disabled()
                             ->rows(2)
                             ->default(function ($record) {
-                                if (!$record || !$record->mandante) return 'Nessun mandante assegnato';
+                                if (!$record || !$record->mandante)
+                                    return 'Nessun mandante assegnato';
                                 return "Mandante: {$record->mandante->ragione_sociale}\nWebsite: {$record->mandante->website}";
                             })
                             ->helperText('Informazioni sul mandante attualmente assegnato'),
@@ -81,13 +84,13 @@ class GmailLabelForm
                         TextInput::make('created_at')
                             ->label('Creato il')
                             ->disabled()
-                            ->formatStateUsing(fn ($state) => $state ? $state->format('d/m/Y H:i') : '')
+                            ->formatStateUsing(fn($state) => $state ? $state->format('d/m/Y H:i') : '')
                             ->helperText('Data e ora di creazione'),
                         TextInput::make('updated_at')
                             ->label('Aggiornato il')
                             ->disabled()
-                            ->formatStateUsing(fn ($state) => $state ? $state->format('d/m/Y H:i') : '')
-                            ->helperText('Data e ora dell\'ultimo aggiornamento'),
+                            ->formatStateUsing(fn($state) => $state ? $state->format('d/m/Y H:i') : '')
+                            ->helperText("Data e ora dell'ultimo aggiornamento"),
                     ])
                     ->columns(2)
                     ->collapsible()

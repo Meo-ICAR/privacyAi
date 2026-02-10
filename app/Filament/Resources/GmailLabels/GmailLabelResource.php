@@ -23,11 +23,12 @@ class GmailLabelResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-tag';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Email';
+    protected static string|\UnitEnum|null $navigationGroup = 'Configurazione';
 
     protected static ?int $navigationSort = 1;
 
     protected static ?string $modelLabel = 'Gmail Label';
+
     protected static ?string $pluralModelLabel = 'Gmail Labels';
 
     public static function form(Schema $schema): Schema

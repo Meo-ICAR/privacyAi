@@ -10,11 +10,11 @@ use App\Filament\Resources\RegistroTrattamentis\Schemas\RegistroTrattamentiForm;
 use App\Filament\Resources\RegistroTrattamentis\Schemas\RegistroTrattamentiInfolist;
 use App\Filament\Resources\RegistroTrattamentis\Tables\RegistroTrattamentisTable;
 use App\Models\RegistroTrattamenti;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use BackedEnum;
 
 class RegistroTrattamentiResource extends Resource
 {
@@ -22,7 +22,7 @@ class RegistroTrattamentiResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-clipboard-document-list';
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Compliance';
+    protected static string|\UnitEnum|null $navigationGroup = 'Anagrafiche';
 
     public static function form(Schema $schema): Schema
     {

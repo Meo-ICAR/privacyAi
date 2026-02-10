@@ -10,11 +10,12 @@ use App\Filament\Resources\BasiGiuridiches\Schemas\BasiGiuridicheForm;
 use App\Filament\Resources\BasiGiuridiches\Schemas\BasiGiuridicheInfolist;
 use App\Filament\Resources\BasiGiuridiches\Tables\BasiGiuridichesTable;
 use App\Models\BasiGiuridiche;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use BackedEnum;
+use UnitEnum;
 
 class BasiGiuridicheResource extends Resource
 {

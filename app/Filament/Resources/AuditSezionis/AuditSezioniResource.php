@@ -15,6 +15,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use BackedEnum;
+use UnitEnum;
 
 class AuditSezioniResource extends Resource
 {
@@ -22,7 +23,7 @@ class AuditSezioniResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-list-bullet';
 
-  protected static string|\UnitEnum|null $navigationGroup = 'GDPR Settings';
+    protected static string|\UnitEnum|null $navigationGroup = 'GDPR Settings';
 
     protected static bool $isScopedToTenant = false;
 

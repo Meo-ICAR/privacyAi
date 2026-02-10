@@ -24,8 +24,7 @@ class EmailProviderResource extends Resource
 
     protected static bool $isScopedToTenant = false;
 
-
-    protected static string|\UnitEnum|null $navigationGroup = 'Settings';
+    protected static string|\UnitEnum|null $navigationGroup = 'Configurazione';
 
     public static function form(Schema $schema): Schema
     {

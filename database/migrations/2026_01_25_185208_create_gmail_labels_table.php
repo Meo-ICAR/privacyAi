@@ -15,7 +15,8 @@ return new class extends Migration {
             $table->string('google_id')->unique();  // L'ID di Google (es. "Label_1", "INBOX")
             $table->string('name');  // Es. "PRIVACY/THUNDER"
             $table->string('dominio')->nullable();  // Es. "innova-tech.cloud"
-            $table->string('type');  // Es. "user" o "system"
+            $table->string('type')->nullable();  // Es. "user" o "system"
+            $table->foreignUlid('mandante_id')->nullable()->constrained('mandanti')->onDelete('cascade');
             $table->timestamps();
         });
     }
