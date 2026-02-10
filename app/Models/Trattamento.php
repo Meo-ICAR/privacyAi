@@ -10,6 +10,8 @@ class Trattamento extends Model
 {
     use HasUlids, BelongsToMandante;
 
+    protected $table = 'trattamenti';
+
     protected $fillable = [
         'mandante_id',
         'nome',
@@ -35,7 +37,8 @@ class Trattamento extends Model
 
     public function mandatarie()
     {
-        return $this->belongsToMany(Mandatarie::class, 'trattamento_mandataria')
+        return $this
+            ->belongsToMany(Mandatarie::class, 'trattamento_mandataria')
             ->withPivot('ruolo')
             ->withTimestamps();
     }

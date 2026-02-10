@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -41,18 +40,18 @@ return new class extends Migration
 
         // Pivot table for processing activities and data categories
         Schema::create('trattamento_categoria_dati', function (Blueprint $table) {
-            $table->ulid('id')->primary();
             $table->foreignUlid('trattamento_id')->constrained('trattamenti')->cascadeOnDelete();
             $table->foreignUlid('categoria_dati_id')->constrained('categorie_dati')->cascadeOnDelete();
+            $table->primary(['trattamento_id', 'categoria_dati_id']);
             $table->timestamps();
         });
 
         // Pivot table for processing activities and mandatarie (recipients)
         Schema::create('trattamento_mandataria', function (Blueprint $table) {
-            $table->ulid('id')->primary();
             $table->foreignUlid('trattamento_id')->constrained('trattamenti')->cascadeOnDelete();
             $table->foreignUlid('mandataria_id')->constrained('mandatarie')->cascadeOnDelete();
-            $table->string('ruolo')->default('destinatario'); // destinatario, responsabile, etc.
+            $table->primary(['trattamento_id', 'mandataria_id']);
+            $table->string('ruolo')->default('destinatario');  // destinatario, responsabile, etc.
             $table->timestamps();
         });
     }
