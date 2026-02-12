@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('ragione_sociale')->comment("Nome legale dell'azienda cliente");
             $table->string('p_iva', 13)->nullable();
             $table->string('titolare_trattamento')->comment('Titolare del Trattamento');
+            $table->text('sede_legale')->nullable()->comment('Indirizzo completo sede legale');
             $table->string('referente')->nullable();
             $table->string('email_referente')->nullable()->comment('Contatto primario per comunicazioni privacy');
             $table->string('email_dpo')->nullable()->comment('Contatto DPO/Privacy Officer');

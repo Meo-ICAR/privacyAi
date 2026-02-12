@@ -76,6 +76,11 @@ class MandantiForm
                     ->nullable()
                     ->maxLength(255)
                     ->helperText('Sito web aziendale'),
+                Textarea::make('sede_legale')
+                    ->label('Sede Legale')
+                    ->nullable()
+                    ->rows(3)
+                    ->helperText('Indirizzo completo della sede legale (via, numero civico, CAP, città, provincia)'),
                 Select::make('holding_id')
                     ->relationship('holding', 'ragione_sociale')
                     ->nullable()

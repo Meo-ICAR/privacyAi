@@ -48,6 +48,12 @@ class MandantisTable
                     ->label('Email Provider')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('sede_legale')
+                    ->label('Sede Legale')
+                    ->limit(50)
+                    ->wrap()
+                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->searchable(),
                 TextColumn::make('gmail_labels_count')
                     ->label('Gmail Labels')
                     ->getStateUsing(fn($record) => $record->gmailLabels()->count())
