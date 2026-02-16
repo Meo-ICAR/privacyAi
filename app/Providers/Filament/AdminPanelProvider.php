@@ -19,7 +19,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use Pboivin\FilamentPeek\FilamentPeekPlugin;
+use pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -63,7 +63,7 @@ class AdminPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->plugins([
-                FilamentPeekPlugin::make(),
+                EnvironmentIndicatorPlugin::make(),
                 \DutchCodingCompany\FilamentSocialite\FilamentSocialitePlugin::make()
                     ->providers([
                         \DutchCodingCompany\FilamentSocialite\Provider::make('google')
